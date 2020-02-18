@@ -1,10 +1,11 @@
 import React from "react";
 import "./style/App.css";
 import {useSelector, useDispatch} from "react-redux";
-import { selectUser } from "./redux";
+import { selectUser, changeJoke } from "./redux";
 
 function Support() {
   const selected = useSelector(state => state.user);
+  const joke = useSelector(state => state.joke);
   const dispatch = useDispatch();
   const usersList = ['Sora', 'Hanako', 'Mami']; // TODO ADD email??
 
@@ -26,6 +27,7 @@ function Support() {
   const  getJoke = () => {
     console.log("getJoke");
     /* TODO call joke api*/
+    dispatch(changeJoke("say something!"));
   }
 
   const  sendMail = () => {
@@ -42,7 +44,7 @@ function Support() {
   return (
     <div className="Support">
       <h3>Date Support</h3>
-      <div className="jokearea">joke area</div>
+      <div className="jokearea">{joke}</div>
       <div className="updatejoke" onClick={()=>{getJoke()}}>🔄</div>
 
       <div className="sendList">

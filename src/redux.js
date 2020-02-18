@@ -3,6 +3,14 @@ import { createStore } from "redux";
 const initialState = {
   view: "top",
   user: "",
+  joke: "joke area"
+};
+
+export const changeJoke = joke => {
+  return {
+    type: "CHANGE_JOKE",
+    joke
+  };
 };
 
 export const changeView = view => {
@@ -36,6 +44,9 @@ export const setLocation = (prefecture, city) => {
 const reducer = (state = initialState, action) => {
   // eslint-disable-next-line default-case
   switch (action.type) {
+    case "CHANGE_JOKE": {
+      return { ...state, joke: action.joke };
+    }
     case "CHANGE_VIEW": {
       return { ...state, view: action.view };
     }

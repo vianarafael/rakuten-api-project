@@ -1,32 +1,44 @@
 body {
   background-color: #E9546B;
-  font-family: 'Cabin Sketch', cursive;
 }
 .App {
   text-align: center;
-  /* background-color: white;
+  background-color: white;
   max-width: 600px;
-  margin: 0 auto;
-  padding: 0 20px 20px 20px;
-  border-radius: 20px; */
+  margin: 20px auto;
+  padding: 20px;
+  color: #595757;
+  /* border-radius: 20px; */
 }
 
-/* ////////////////////////// */
+h1{
+  color:  white;
+  padding: 50px 0 0 0;
+  cursor: pointer;
+}
+
 .topButton{
-  /* TODO  change design*/
   width: 200px;
   height: 200px;
   border: 1px solid;
-  border-color: black;
+  border-color: #E9546B;
   display: inline-block; 
   cursor: pointer;
+  color: #E9546B;
+  border-radius: 10px;
+  padding: 80px 0;
+  margin:5px;
+}
+.topButton:hover{
+  color: white;
+  background-color: #E9546B;
 }
 .jokearea {
     /* TODO  change design*/
     width: 300px;
     height: 50px;
     border: 1px solid;
-    border-color: black;
+    border-color: #898989;
     margin: 0 auto;
     display: inline-block; 
 }
@@ -43,20 +55,29 @@ body {
   width: 350px;
   height: 50px;
   border: 1px solid;
-  border-color: black;
+  border-color: #898989;
   margin: 10px auto;
   cursor: pointer;
 }
 .select {
-  background-color: gray;
+  background-color: #FADBDA;
 }
 
 .sendButton {
-  /* TODO  change design*/
   width: 200px;
   height: 50px;
-  border: 1px solid;
-  border-color: black;
   display: inline-block; 
   cursor: pointer;
+  background-color: #E9546B;
+  color: white;
+  box-shadow: 0px 0px 0px 3px #E9546B;
+  border: dashed 1px white;
+  margin : 10px;
+  padding: 10px;
+}
+.sendButton:hover {
+  background-color: white;
+  color: #E9546B;
+  box-shadow: 0px 0px 0px 3px white;
+  border: dashed 1px #E9546B;
 }

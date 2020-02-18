@@ -21,7 +21,6 @@ function App() {
         <div className="topButton" onClick={() => clickFunction("generator")}>
           DATE GENERATOR
         </div>
-        　
         <div className="topButton" onClick={() => clickFunction("support")}>
           DATE SUPPORT
         </div>
@@ -33,10 +32,12 @@ function App() {
     body = <Support></Support>;
   }
   return (
+    <React.Fragment>
+    <h1 onClick={() => clickFunction("top")}>Team RATA dating App</h1>
     <div className="App">
-      <h1 onClick={() => clickFunction("top")}>Team RATA dating App</h1>
       {body}
     </div>
+    </React.Fragment>
   );
 }
 
