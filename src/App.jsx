@@ -33,10 +33,8 @@ function App() {
   }
   return (
     <React.Fragment>
-    <h1 onClick={() => clickFunction("top")}>Team RATA dating App</h1>
-    <div className="App">
-      {body}
-    </div>
+      <h1 onClick={() => clickFunction("top")}>Team RATA dating App</h1>
+      <div className="App">{body}</div>
     </React.Fragment>
   );
 }
