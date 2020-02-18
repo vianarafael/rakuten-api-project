@@ -1,7 +1,7 @@
 import React from "react";
-import "./style/App.css";
+import "../style/App.css";
 import {useSelector, useDispatch} from "react-redux";
-import { selectUser, changeJoke } from "./redux";
+import { selectUser, changeJoke } from "../redux";
 
 function Support() {
   const selected = useSelector(state => state.user);
