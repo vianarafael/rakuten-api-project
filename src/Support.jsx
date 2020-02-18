@@ -1,8 +1,87 @@
 import React from "react";
 import "./style/App.css";
+import { useSelector, useDispatch } from "react-redux";
+import { selectUser } from "./redux";
 
 function Support() {
-  return <div className="Support">support page~~~</div>;
+  const selected = useSelector(state => state.user);
+  const dispatch = useDispatch();
+  const usersList = ["Sora", "Hanako", "Mami"]; // TODO ADD email??
+
+  let parts = usersList.map((usr, index) => {
+    if (index !== selected) {
+      return (
+        <div
+          className="user"
+          key={index}
+          onClick={() => {
+            clickUser(index);
+          }}
+        >
+          <span role="img" aria-label="HappyFace">
+            😛{usr}
+          </span>
+        </div>
+      );
+    }
+    return (
+      <div
+        className="user select"
+        key={index}
+        onClick={() => {
+          clickUser(index);
+        }}
+      >
+        <span role="img" aria-label="RelievedFace">
+          😌{usr}
+        </span>
+      </div>
+    );
+  });
+
+  const getJoke = () => {
+    console.log("getJoke");
+    /* TODO call joke api*/
+  };
+
+  const sendMail = () => {
+    console.log("send");
+    /* TODO call send api*/
+  };
+
+  const clickUser = param => {
+    console.log("select", param);
+    // set user
+    dispatch(selectUser(param));
+  };
+
+  return (
+    <div className="Support">
+      <h3>Date Support</h3>
+      <div className="jokearea">joke area</div>
+      <div
+        className="updatejoke"
+        onClick={() => {
+          getJoke();
+        }}
+      >
+        <span role="img" aria-label="Refresh">
+          🔄
+        </span>
+      </div>
+
+      <div className="sendList">{parts}</div>
+
+      <div
+        className="sendButton"
+        onClick={() => {
+          sendMail();
+        }}
+      >
+        SEND!
+      </div>
+    </div>
+  );
 }
 
 export default Support;

@@ -1,31 +1,71 @@
-import React from "react";
-import "../style/App.css";
+import React, { useRef } from "react";
 import DatePicker from "react-datepicker";
 import { useSelector, useDispatch } from "react-redux";
-import { setDate } from "../redux";
-
-//get weather by date
-//filter activity by weather and location
-//filter resturant by weather and location
+import { setDate, setLocation } from "../redux";
+import "../style/DateGenerator.css";
+import DateSuggestion from "./DateSuggestion";
 
 function DateGenerator() {
   const date = useSelector(state => state.date);
   const dispatch = useDispatch();
 
   const changeDate = param => {
-    console.log(param);
     dispatch(setDate(param));
+  };
+
+  let zipcodeFirst = useRef(null);
+  let zipcodeSecond = useRef(null);
+  let cityInput = useRef(null);
+
+  const onSubmit = () => {
+    const newLocation = {
+      city: cityInput.current,
+      zipcodeFirst: zipcodeFirst.current,
+      zipcodeSecond: zipcodeSecond.current
+    };
+    console.log(newLocation);
+    dispatch(setLocation(newLocation));
   };
   return (
     <div className="DateGenerator">
-      <h1>Plan your perfect day</h1>
-      <DatePicker selected={date} onChange={date => changeDate(date)} />
-      <form>
-        <p>Prefecture: </p>
-        <input type="text" />
-        <p>City: </p>
-        <input type="text" />
-      </form>
+      <h1 className="DateGenTitle">Plan your perfect day</h1>
+      <div className="inputContainer">
+        <span>
+          Date:
+          <DatePicker
+            className="date inputField"
+            selected={date}
+            onChange={date => changeDate(date)}
+          />
+        </span>
+        <form>
+          <span>
+            City:
+            <input className="city inputField" type="text" ref={cityInput} />
+          </span>
+          <br />
+          <span>
+            Zipcode:
+            <input
+              className="zipcodeFirst inputField"
+              type="text"
+              maxLength="3"
+              ref={zipcodeFirst}
+            />
+            -
+            <input
+              className="zipcodeSecond inputField"
+              type="text"
+              maxLength="4"
+              ref={zipcodeSecond}
+            />
+          </span>
+        </form>
+        <button className="submit inputField" onClick={onSubmit}>
+          Generate
+        </button>
+      </div>
+      <DateSuggestion />
     </div>
   );
 }
