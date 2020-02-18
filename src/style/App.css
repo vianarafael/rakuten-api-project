@@ -1,5 +1,14 @@
+body {
+  background-color: #E9546B;
+  font-family: 'Cabin Sketch', cursive;
+}
 .App {
   text-align: center;
+  /* background-color: white;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 20px 20px 20px;
+  border-radius: 20px; */
 }
 
 /* ////////////////////////// */
