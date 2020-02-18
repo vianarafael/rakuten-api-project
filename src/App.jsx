@@ -18,8 +18,8 @@ function App() {
   if  (view === "top") {
     body = 
       <div>
-        <div className="topButton" onClick={()=> clickFunction('generator')}>DATE GENERATOR</div>　
-        <div className="topButton" onClick={()=> clickFunction('support')}>DATE SUPPORT</div>
+        <div className="col-sm-2 topButton" onClick={()=> clickFunction('generator')}>DATE GENERATOR</div>　
+        <div className="col-sm-2 topButton" onClick={()=> clickFunction('support')}>DATE SUPPORT</div>
       </div>
     
   } else if (view === "generator"){
