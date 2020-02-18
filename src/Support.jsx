@@ -7,39 +7,55 @@ function Support() {
   const selected = useSelector(state => state.user);
   const joke = useSelector(state => state.joke);
   const dispatch = useDispatch();
-  const usersList = ['Sora', 'Hanako', 'Mami']; // TODO ADD email??
+  const usersList = ["Sora", "Hanako", "Mami"]; // TODO ADD email??
 
   let parts = usersList.map((usr, index) => {
     if (index !== selected) {
       return (
-      <div className="user" key={index} onClick={()=> {clickUser(index)}}>
-        😛{usr}
-      </div>
+        <div
+          className="user"
+          key={index}
+          onClick={() => {
+            clickUser(index);
+          }}
+        >
+          <span role="img" aria-label="HappyFace">
+            😛{usr}
+          </span>
+        </div>
       );
     }
     return (
-      <div className="user select" key={index} onClick={()=> {clickUser(index)}}>
-        😌{usr}
+      <div
+        className="user select"
+        key={index}
+        onClick={() => {
+          clickUser(index);
+        }}
+      >
+        <span role="img" aria-label="RelievedFace">
+          😌{usr}
+        </span>
       </div>
     );
   });
 
-  const  getJoke = () => {
+  const getJoke = () => {
     console.log("getJoke");
     /* TODO call joke api*/
     dispatch(changeJoke("say something!"));
   }
 
-  const  sendMail = () => {
+  const sendMail = () => {
     console.log("send");
     /* TODO call send api*/
-  }
+  };
 
-  const  clickUser = (param) => {
+  const clickUser = param => {
     console.log("select", param);
     // set user
     dispatch(selectUser(param));
-  }
+  };
 
   return (
     <div className="Support">
@@ -51,9 +67,14 @@ function Support() {
         {parts}
       </div>
 
-      <div className="sendButton" onClick={()=>{sendMail()}}>SEND!</div>
-
-
+      <div
+        className="sendButton"
+        onClick={() => {
+          sendMail();
+        }}
+      >
+        SEND!
+      </div>
     </div>
   );
 }

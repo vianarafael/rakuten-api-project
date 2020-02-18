@@ -9,8 +9,14 @@ const initialState = {
 export const changeJoke = joke => {
   return {
     type: "CHANGE_JOKE",
-    joke
-  };
+    joke: "",
+    date: "",
+    location: {
+      city: "",
+      zipcodeFirst: "",
+      zipcodeSecond: ""
+    }
+  }
 };
 
 export const changeView = view => {
@@ -33,11 +39,10 @@ export const setDate = date => {
   };
 };
 
-export const setLocation = (prefecture, city) => {
+export const setLocation = location => {
   return {
     type: "SET_LOCATION",
-    prefecture,
-    city
+    location
   };
 };
 
@@ -54,15 +59,11 @@ const reducer = (state = initialState, action) => {
       return { ...state, date: action.date };
     }
     case "SET_LOCATION": {
-      const newLocation = {
-        prefecture: action.prefecture,
-        city: action.city
-      };
-      return { ...state, newLocation };
+      return { ...state, location: action.location };
     }
     case "SELECT_USER": {
-        return { ...state, user: action.user};
-      }
+      return { ...state, user: action.user };
+    }
   }
   return state;
 };
