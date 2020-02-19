@@ -24,14 +24,16 @@ function DateGenerator() {
   let showAct = useRef(null);
 
   const onSubmit = () => {
-    showRestaurants = showRes.current.value;
-    showActivities = showAct.current.value;
+    showRestaurants = showRes.current.checked;
+    showActivities = showAct.current.checked;
     const newLocation = {
       city: cityInput.current.value,
       zipcodeFirst: zipcodeFirst.current.value,
       zipcodeSecond: zipcodeSecond.current.value
     };
     console.log(newLocation);
+    console.log(showRes.current.checked);
+    console.log(showAct.current.checked);
     dispatch(setLocation(newLocation));
   };
 
@@ -83,9 +85,9 @@ function DateGenerator() {
         <button className="submit inputField" onClick={onSubmit}>
           Generate
         </button>
+        <Restaurants if showRestaurants />
+        <Activities if showActivities />
       </div>
-      if (showRestaurants) {<Restaurants />}
-      if (showActivities) {<Activities />}
     </div>
   );
 }

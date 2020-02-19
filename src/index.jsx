@@ -1,4 +1,3 @@
-
 import React from "react";
 import ReactDOM from "react-dom";
 import "./style/App.css";
@@ -16,4 +15,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById("root")
 );
-

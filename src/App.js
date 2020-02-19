@@ -10,7 +10,7 @@ function App() {
   const dispatch = useDispatch();
 
   const clickFunction = param => {
-    console.log(param);
+    console.log(("change view:", param));
     dispatch(changeView(param));
   };
 
