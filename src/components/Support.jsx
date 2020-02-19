@@ -20,8 +20,11 @@ function Support() {
           }}
         >
           <span role="img" aria-label="HappyFace">
-            😛{usr}
+            😄
           </span>
+          <div>
+          {usr}
+          </div>
         </div>
       );
     }

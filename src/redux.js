@@ -15,7 +15,7 @@ const initialState = {
 export const changeJoke = joke => {
   return {
     type: "CHANGE_JOKE",
-    joke: "",
+    joke
   }
 };
 
