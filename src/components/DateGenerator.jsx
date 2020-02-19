@@ -26,6 +26,9 @@ function DateGenerator() {
     console.log(newLocation);
     dispatch(setLocation(newLocation));
   };
+
+  const today = new Date();
+
   return (
     <div className="DateGenerator">
       <h1 className="DateGenTitle">Plan your perfect day</h1>
@@ -36,6 +39,7 @@ function DateGenerator() {
             className="date inputField"
             selected={date}
             onChange={date => changeDate(date)}
+            maxDate={today + 5} //TODO this attribute doesnt work
           />
         </span>
         <form>
@@ -60,6 +64,9 @@ function DateGenerator() {
               ref={zipcodeSecond}
             />
           </span>
+          <br />
+          <input className="restaurant" type="checkbox" />
+          <input className="restaurant" type="radio" />
         </form>
         <button className="submit inputField" onClick={onSubmit}>
           Generate

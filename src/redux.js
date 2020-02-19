@@ -16,7 +16,7 @@ export const changeJoke = joke => {
       zipcodeFirst: "",
       zipcodeSecond: ""
     }
-  }
+  };
 };
 
 export const changeView = view => {
@@ -26,12 +26,12 @@ export const changeView = view => {
   };
 };
 
-export const selectUser = (user) => {
-    return {
-      type: "SELECT_USER",
-      user
-    };
+export const selectUser = user => {
+  return {
+    type: "SELECT_USER",
+    user
   };
+};
 export const setDate = date => {
   return {
     type: "SET_DATE",
