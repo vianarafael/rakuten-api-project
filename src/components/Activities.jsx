@@ -19,21 +19,21 @@ function Activities() {
   getId();
 
   const selectedActivity = useSelector(state => state.selectedActivity);
-  const date = useSelector(state => state.date);
-  const location = useSelector(state => state.location);
+  // const date = useSelector(state => state.date);
+  // const location = useSelector(state => state.location);
 
-  const city = location.city;
-  const zipcode = location.zipcodeFirst + "-" + location.zipcodeSecond;
+  // const city = location.city;
+  // const zipcode = location.zipcodeFirst + "-" + location.zipcodeSecond;
 
-  const locationId = getLocationId(city);
-  console.log("locationId", locationId);
-  const weather = getWeather(zipcode, date);
-  console.log("weather", weather);
+  // const locationId = getLocationId(city);
+  // console.log("locationId", locationId);
+  // const weather = getWeather(zipcode, date);
+  // console.log("weather", weather);
 
-  console.log(getActivity(weather, locationId));
-  const activities = getActivity(weather, locationId);
-  console.log("activities", activities);
-  dispatch(setActivities(activities));
+  // console.log(getActivity(weather, locationId));
+  // const activities = getActivity(weather, locationId);
+  // console.log("activities", activities);
+  // dispatch(setActivities(activities));
 
   async function changeActivity() {
     console.log({ selectedActivity });
