@@ -34,45 +34,75 @@ h1{
   color: white;
   background-color: #E9546B;
 }
+
 .jokearea {
-    /* TODO  change design*/
-    width: 300px;
-    height: 50px;
-    border: 1px solid;
-    border-color: #898989;
-    margin: 0 auto;
-    display: inline-block; 
+  position: relative;
+  margin: 20px auto;
+  min-width: 120px;
+  max-width: 350px;
+  color: #555;
+  font-size: 16px;
+  background: #FFF;
+  border: solid 1px #555;
+  box-sizing: border-box;
+  border-radius:30px
 }
+
+.jokearea:before {
+  content: "";
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  margin-left: -14px;
+  border: 13px solid transparent;
+  border-top: 13px solid #FFF;
+  z-index: 2;
+}
+
+.jokearea:after {
+  content: "";
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  margin-left: -15px;
+  border: 14px solid transparent;
+  border-top: 16px solid #555;
+  z-index: 1;
+}
+
+.jokearea div {
+  margin: 20px auto;
+  font-size: 20px;
+
+}
+
 .updatejoke {
-  /* TODO  change design*/
   width: 50px;
   height: 50px;
   display: inline-block;
   cursor: pointer;
 }
 
-.user {
-  /* TODO  change design*/
-  width: 350px;
-  height: 50px;
+.option {
+  width: 100px;
+  height: 100px;
   border: 1px solid;
-  border-color: #898989;
-  margin: 10px auto;
+  margin: 10px;
   cursor: pointer;
-}
-.user * {
   display: inline-block;
-  font-size: 30px;
+  border-radius: 20px;
+  background-color: white;
+  border-color: #E9546B;
 }
-.user div {
-  /* border: 1px solid;
-  border-color: #898989; */
-  width: 300px;
-  margin: 0 0 0 10px;
+.option * {
+  font-size: 20px;
+  margin: 30px auto;
 }
 
 .select {
-  background-color: #FADBDA;
+  background-color: #E9546B;
+  color: white;
+  
 }
 
 .sendButton {
