@@ -19,3 +19,7 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+<<<<<<< HEAD
+=======
+.env
+>>>>>>> 4b8401498c1960a26ba843062a328ec8efc901b1
