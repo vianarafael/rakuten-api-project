@@ -58,7 +58,7 @@ const getLocationId = (placeName = "Shibuya") => {
   })
     .then(response => {
       location = response.data.data[0].result_object.location_id;
-    //   console.log(response.data.data[0].result_object.location_id);
+      //   console.log(response.data.data[0].result_object.location_id);
     })
     .catch(error => {
       console.log(error);
@@ -66,7 +66,6 @@ const getLocationId = (placeName = "Shibuya") => {
 
   return location;
 };
-
 
 const getActivity = (weather = true, location = 1066456) => {
   if (!weather) {
@@ -126,31 +125,29 @@ const getActivity = (weather = true, location = 1066456) => {
 };
 
 const getRestaurant = (location = 1066456) => {
-    axios({
-      method: "GET",
-      url: "https://tripadvisor1.p.rapidapi.com/attractions/list",
-      headers: {
-        "content-type": "application/json",
-        "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
-        "x-rapidapi-key": process.env.RAPID_API_KEY_TRIP
-      },
-      params: {
-        lang: "en_US",
-        currency: "USD",
-        sort: "recommended",
-        lunit: "km",
-        limit: "10",
-        bookable_first: "false",
-        subcategory: "36",
-        location_id: `${location}`
-      }
+  axios({
+    method: "GET",
+    url: "https://tripadvisor1.p.rapidapi.com/attractions/list",
+    headers: {
+      "content-type": "application/json",
+      "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
+      "x-rapidapi-key": process.env.RAPID_API_KEY_TRIP
+    },
+    params: {
+      lang: "en_US",
+      currency: "USD",
+      sort: "recommended",
+      lunit: "km",
+      limit: "10",
+      bookable_first: "false",
+      subcategory: "36",
+      location_id: `${location}`
+    }
+  })
+    .then(response => {
+      return response.data.data;
     })
-      .then(response => {
-        return response.data.data;
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
-  
-  
+    .catch(error => {
+      console.log(error);
+    });
+};
