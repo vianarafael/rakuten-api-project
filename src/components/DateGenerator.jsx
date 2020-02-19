@@ -64,8 +64,8 @@ function DateGenerator() {
               ref={zipcodeSecond}
             />
           </span>
-          Restaurant: <input className="restaurant" type="checkbox"/>
-          Activity: <input className="activity" type="checkbox"/>
+          Restaurant: <input className="restaurant" type="checkbox" />
+          Activity: <input className="activity" type="checkbox" />
         </form>
         <button className="submit inputField" onClick={onSubmit}>
           Generate
