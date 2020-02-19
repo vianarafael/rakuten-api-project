@@ -1,25 +1,41 @@
 import React from "react";
-import logo from "./logo.svg";
-// import "./App.css";
+import "./style/App.css";
+import { useSelector, useDispatch } from "react-redux";
+import { changeView } from "./redux";
+import Support from "./components/Support";
+import DateGenerator from "./components/DateGenerator";
 
 function App() {
+  const view = useSelector(state => state.view);
+  const dispatch = useDispatch();
+
+  const clickFunction = param => {
+    console.log(param);
+    dispatch(changeView(param));
+  };
+
+  let body;
+  if (view === "top") {
+    body = (
+      <div>
+        <div className="topButton" onClick={() => clickFunction("generator")}>
+          DATE GENERATOR
+        </div>
+        <div className="topButton" onClick={() => clickFunction("support")}>
+          DATE SUPPORT
+        </div>
+      </div>
+    );
+  } else if (view === "generator") {
+    body = <DateGenerator></DateGenerator>;
+  } else if (view === "support") {
+    body = <Support></Support>;
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <h1 onClick={() => clickFunction("top")}>Team RATA dating App</h1>
+      <div className="App">{body}</div>
+    </React.Fragment>
   );
 }
 
