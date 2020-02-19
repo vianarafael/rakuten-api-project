@@ -17,6 +17,7 @@ function Support() {
           key={index}
           onClick={() => {
             clickUser(index);
+            getJoke();
           }}
         >
           <div>{joke}</div>
@@ -29,6 +30,7 @@ function Support() {
         key={index}
         onClick={() => {
           clickUser(index);
+          getJoke();
         }}
       >
         <div>{joke}</div>
@@ -37,18 +39,25 @@ function Support() {
   });
 
   const getJoke = () => {
-    console.log("getJoke");
-    /* TODO call joke api*/
-    dispatch(changeJoke("say something!"));
-  };
+    const decideJoke = () => {
+      const jokes = [
+        "Why didn't the lifeguard save the hippie? Because he was too far out. Ha!",
+        "Did you hear about the magic tractor? It was driving down the road and suddenly turned into a field!",
+        "What's on the menu? ME N U",
+        "If I freeze, it's not a computer virus. I was just stunned by your beauty.",
+        "I'm no photographer, but I can picture us together",
+        "Are you a font? Because you're just my type",
+      ];
+      return jokes[Math.floor(Math.random() * jokes.length)];
+    };
+    dispatch(changeJoke(decideJoke()));
+  }
 
   const sendMail = () => {
-    console.log("send");
     /* TODO call send api*/
   };
 
   const clickUser = param => {
-    console.log("select", param);
     // set user
     dispatch(selectUser(param));
   };
@@ -61,7 +70,6 @@ function Support() {
         <div>{joke}</div>
       </div>
 
-      <div className="sendList">{parts}</div>
 
       <div
         className="sendButton"

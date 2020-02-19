@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { changeView } from "./redux";
 import Support from "./components/Support";
 import DateGenerator from "./components/DateGenerator";
+import icon1 from "./images/icon1.png"
+import icon2 from "./images/icon2.png"
 
 function App() {
   const view = useSelector(state => state.view);
@@ -17,12 +19,14 @@ function App() {
   let body;
   if (view === "top") {
     body = (
-      <div>
+      <div className="menus">
         <div className="topButton" onClick={() => clickFunction("generator")}>
-          DATE GENERATOR
+          <img src={icon1} alt="icon1"></img>
+          <div>DATE GENERATOR</div>
         </div>
         <div className="topButton" onClick={() => clickFunction("support")}>
-          DATE SUPPORT
+          <img src={icon2} alt="icon2"></img>
+          <div>DATE SUPPORT</div>
         </div>
       </div>
     );
