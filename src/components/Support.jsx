@@ -37,8 +37,9 @@ function Support() {
         }}
       >
         <span role="img" aria-label="RelievedFace">
-          😌{usr}
+          😌
         </span>
+        <div>{usr}</div>
       </div>
     );
   });
