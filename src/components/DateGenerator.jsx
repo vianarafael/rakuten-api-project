@@ -3,11 +3,15 @@ import DatePicker from "react-datepicker";
 import { useSelector, useDispatch } from "react-redux";
 import { setDate, setLocation } from "../redux";
 import "../style/DateGenerator.css";
-import DateSuggestion from "./DateSuggestion";
+import Activities from "./Activities";
+import Restaurants from "./Restaurants";
 
 function DateGenerator() {
-  const date = useSelector(state => state.date);
   const dispatch = useDispatch();
+  const date = useSelector(state => state.date);
+  const today = new Date();
+  let showRestaurants = false;
+  let showActivities = false;
 
   const changeDate = param => {
     dispatch(setDate(param));
@@ -16,18 +20,20 @@ function DateGenerator() {
   let zipcodeFirst = useRef(null);
   let zipcodeSecond = useRef(null);
   let cityInput = useRef(null);
+  let showRes = useRef(null);
+  let showAct = useRef(null);
 
   const onSubmit = () => {
+    showRestaurants = showRes.current.value;
+    showActivities = showAct.current.value;
     const newLocation = {
-      city: cityInput.current,
-      zipcodeFirst: zipcodeFirst.current,
-      zipcodeSecond: zipcodeSecond.current
+      city: cityInput.current.value,
+      zipcodeFirst: zipcodeFirst.current.value,
+      zipcodeSecond: zipcodeSecond.current.value
     };
     console.log(newLocation);
     dispatch(setLocation(newLocation));
   };
-
-  const today = new Date();
 
   return (
     <div className="DateGenerator">
@@ -64,14 +70,22 @@ function DateGenerator() {
               ref={zipcodeSecond}
             />
           </span>
-          Restaurant: <input className="restaurant" type="checkbox" />
-          Activity: <input className="activity" type="checkbox" />
+          <br />
+          <span className="restaurant restaurant-container">
+            Restaurants:{" "}
+            <input className="restaurant" type="checkbox" ref={showRes} />
+          </span>
+          <span className="activity activity-container">
+            Activities:{" "}
+            <input className="activity" type="checkbox" ref={showAct} />
+          </span>
         </form>
         <button className="submit inputField" onClick={onSubmit}>
           Generate
         </button>
       </div>
-      <DateSuggestion />
+      if (showRestaurants) {<Restaurants />}
+      if (showActivities) {<Activities />}
     </div>
   );
 }

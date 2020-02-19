@@ -1,6 +1,6 @@
 import React from "react";
 import "../style/App.css";
-import {useSelector, useDispatch} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectUser, changeJoke } from "../redux";
 
 function Support() {
@@ -22,9 +22,7 @@ function Support() {
           <span role="img" aria-label="HappyFace">
             😄
           </span>
-          <div>
-          {usr}
-          </div>
+          <div>{usr}</div>
         </div>
       );
     }
@@ -48,7 +46,7 @@ function Support() {
     console.log("getJoke");
     /* TODO call joke api*/
     dispatch(changeJoke("say something!"));
-  }
+  };
 
   const sendMail = () => {
     console.log("send");
@@ -65,11 +63,16 @@ function Support() {
     <div className="Support">
       <h3>Date Support</h3>
       <div className="jokearea">{joke}</div>
-      <div className="updatejoke" onClick={()=>{getJoke()}}>🔄</div>
-
-      <div className="sendList">
-        {parts}
+      <div
+        className="updatejoke"
+        onClick={() => {
+          getJoke();
+        }}
+      >
+        🔄
       </div>
+
+      <div className="sendList">{parts}</div>
 
       <div
         className="sendButton"

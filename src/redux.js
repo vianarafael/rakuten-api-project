@@ -9,7 +9,9 @@ const initialState = {
     city: "",
     zipcodeFirst: "",
     zipcodeSecond: ""
-  }
+  },
+  restaurants: [],
+  activities: []
 };
 
 export const changeJoke = joke => {
@@ -46,6 +48,20 @@ export const setLocation = location => {
   };
 };
 
+export const setRestaurants = restaurants => {
+  return {
+    type: "SET_RESTAURANTS",
+    restaurants
+  };
+};
+
+export const setActivities = activities => {
+  return {
+    type: "SET_ACTIVITIES",
+    activities
+  };
+};
+
 const reducer = (state = initialState, action) => {
   // eslint-disable-next-line default-case
   switch (action.type) {
@@ -63,6 +79,12 @@ const reducer = (state = initialState, action) => {
     }
     case "SELECT_USER": {
       return { ...state, user: action.user };
+    }
+    case "SET_RESTAURANTS": {
+      return { ...state, restaurants: action.restaurants };
+    }
+    case "SET_ACTIVITIES": {
+      return { ...state, activities: action.activities };
     }
   }
   return state;

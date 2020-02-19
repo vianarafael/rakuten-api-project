@@ -1,8 +1,8 @@
 // import axios from "axios";
 const axios = require("axios");
-require("dotenv").config();
 
-const getWeather = (zipcode = "152-0002", date = "2020-02-20") => {
+export const getWeather = (zipcode = "152-0002", date = "2020-02-20") => {
+  console.log(process.env.REACT_APP_RAPID_API_KEY_WEATHER);
   const dateTime = `${date} 00:00:00`;
   axios({
     method: "GET",
@@ -10,7 +10,7 @@ const getWeather = (zipcode = "152-0002", date = "2020-02-20") => {
     headers: {
       "content-type": "application/octet-stream",
       "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
-      "x-rapidapi-key": process.env.RAPID_API_KEY_WEATHER
+      "x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY_WEATHER
     },
     params: {
       zip: `${zipcode},jp`
@@ -35,7 +35,7 @@ const getWeather = (zipcode = "152-0002", date = "2020-02-20") => {
     });
 };
 
-const getLocationId = (placeName = "Shibuya") => {
+export const getLocationId = (placeName = "Shibuya") => {
   let location;
   axios({
     method: "GET",
@@ -43,7 +43,7 @@ const getLocationId = (placeName = "Shibuya") => {
     headers: {
       "content-type": "application/json",
       "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
-      "x-rapidapi-key": process.env.RAPID_API_KEY_TRIP
+      "x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY_TRIP
     },
     params: {
       location_id: "1",
@@ -58,7 +58,7 @@ const getLocationId = (placeName = "Shibuya") => {
   })
     .then(response => {
       location = response.data.data[0].result_object.location_id;
-      //   console.log(response.data.data[0].result_object.location_id);
+      console.log(response.data.data[0].result_object.location_id);
     })
     .catch(error => {
       console.log(error);
@@ -67,7 +67,7 @@ const getLocationId = (placeName = "Shibuya") => {
   return location;
 };
 
-const getActivity = (weather = true, location = 1066456) => {
+export const getActivity = (weather = true, location = 1066456) => {
   if (!weather) {
     //indoor actitivies
     axios({
@@ -76,7 +76,7 @@ const getActivity = (weather = true, location = 1066456) => {
       headers: {
         "content-type": "application/json",
         "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
-        "x-rapidapi-key": process.env.RAPID_API_KEY_TRIP
+        "x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY_TRIP
       },
       params: {
         lang: "en_US",
@@ -103,7 +103,7 @@ const getActivity = (weather = true, location = 1066456) => {
     headers: {
       "content-type": "application/json",
       "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
-      "x-rapidapi-key": process.env.RAPID_API_KEY_TRIP
+      "x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY_TRIP
     },
     params: {
       lang: "en_US",
@@ -124,14 +124,14 @@ const getActivity = (weather = true, location = 1066456) => {
     });
 };
 
-const getRestaurant = (location = 1066456) => {
+export const getRestaurant = (location = 1066456) => {
   axios({
     method: "GET",
     url: "https://tripadvisor1.p.rapidapi.com/attractions/list",
     headers: {
       "content-type": "application/json",
       "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
-      "x-rapidapi-key": process.env.RAPID_API_KEY_TRIP
+      "x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY_TRIP
     },
     params: {
       lang: "en_US",
