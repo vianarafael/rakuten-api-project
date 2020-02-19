@@ -3,19 +3,19 @@ import { createStore } from "redux";
 const initialState = {
   view: "top",
   user: "",
-  joke: "joke area"
+  joke: "joke area",
+  date: "",
+  location: {
+    city: "",
+    zipcodeFirst: "",
+    zipcodeSecond: ""
+  }
 };
 
 export const changeJoke = joke => {
   return {
     type: "CHANGE_JOKE",
-    joke: "",
-    date: "",
-    location: {
-      city: "",
-      zipcodeFirst: "",
-      zipcodeSecond: ""
-    }
+    joke
   };
 };
 

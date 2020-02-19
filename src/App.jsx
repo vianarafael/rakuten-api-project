@@ -2,7 +2,7 @@ import React from "react";
 import "./style/App.css";
 import { useSelector, useDispatch } from "react-redux";
 import { changeView } from "./redux";
-import Support from "./Support";
+import Support from "./components/Support";
 import DateGenerator from "./components/DateGenerator";
 
 function App() {

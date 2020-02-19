@@ -1,7 +1,7 @@
 import React from "react";
-import "./style/App.css";
+import "../style/App.css";
 import {useSelector, useDispatch} from "react-redux";
-import { selectUser, changeJoke } from "./redux";
+import { selectUser, changeJoke } from "../redux";
 
 function Support() {
   const selected = useSelector(state => state.user);
@@ -20,8 +20,11 @@ function Support() {
           }}
         >
           <span role="img" aria-label="HappyFace">
-            😛{usr}
+            😄
           </span>
+          <div>
+          {usr}
+          </div>
         </div>
       );
     }
@@ -34,8 +37,9 @@ function Support() {
         }}
       >
         <span role="img" aria-label="RelievedFace">
-          😌{usr}
+          😌
         </span>
+        <div>{usr}</div>
       </div>
     );
   });
