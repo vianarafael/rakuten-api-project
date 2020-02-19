@@ -7,37 +7,31 @@ function Support() {
   const selected = useSelector(state => state.user);
   const joke = useSelector(state => state.joke);
   const dispatch = useDispatch();
-  const usersList = ["Sora", "Hanako", "Mami"]; // TODO ADD email??
+  const jokeList = ["SIMPLE", "TERRIBLE", "COOL"];
 
-  let parts = usersList.map((usr, index) => {
+  let parts = jokeList.map((joke, index) => {
     if (index !== selected) {
       return (
         <div
-          className="user"
+          className="option"
           key={index}
           onClick={() => {
             clickUser(index);
           }}
         >
-          <span role="img" aria-label="HappyFace">
-            😄
-          </span>
-          <div>{usr}</div>
+          <div>{joke}</div>
         </div>
       );
     }
     return (
       <div
-        className="user select"
+        className="option select"
         key={index}
         onClick={() => {
           clickUser(index);
         }}
       >
-        <span role="img" aria-label="RelievedFace">
-          😌
-        </span>
-        <div>{usr}</div>
+        <div>{joke}</div>
       </div>
     );
   });
@@ -62,14 +56,9 @@ function Support() {
   return (
     <div className="Support">
       <h3>Date Support</h3>
-      <div className="jokearea">{joke}</div>
-      <div
-        className="updatejoke"
-        onClick={() => {
-          getJoke();
-        }}
-      >
-        🔄
+      <div className="selectParts">{parts}</div>
+      <div className="jokearea">
+        <div>{joke}</div>
       </div>
 
       <div className="sendList">{parts}</div>
@@ -80,7 +69,7 @@ function Support() {
           sendMail();
         }}
       >
-        SEND!
+        COPY
       </div>
     </div>
   );
