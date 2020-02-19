@@ -70,7 +70,6 @@ function Support() {
         <div>{joke}</div>
       </div>
 
-      <div className="sendList">{parts}</div>
 
       <div
         className="sendButton"
