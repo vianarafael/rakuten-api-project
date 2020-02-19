@@ -1,6 +1,6 @@
 import React from "react";
 import "../style/App.css";
-import {useSelector, useDispatch} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectUser, changeJoke } from "../redux";
 
 function Support() {
@@ -20,9 +20,7 @@ function Support() {
             getJoke();
           }}
         >
-          <div>
-          {joke}
-          </div>
+          <div>{joke}</div>
         </div>
       );
     }
@@ -67,13 +65,12 @@ function Support() {
   return (
     <div className="Support">
       <h3>Date Support</h3>
-      <div className="selectParts">
-        {parts}
-      </div>
+      <div className="selectParts">{parts}</div>
       <div className="jokearea">
         <div>{joke}</div>
       </div>
 
+      <div className="sendList">{parts}</div>
 
       <div
         className="sendButton"

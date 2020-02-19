@@ -1,6 +1,6 @@
 
 body {
-  background-color: #E9546B;
+  background-color: #e9546b;
 }
 .App {
   text-align: center;
@@ -12,27 +12,27 @@ body {
   /* border-radius: 20px; */
 }
 
-h1{
-  color:  white;
+h1 {
+  color: white;
   padding: 50px 0 0 0;
   cursor: pointer;
 }
 
-.topButton{
+.topButton {
   width: 200px;
   height: 200px;
   border: 1px solid;
-  border-color: #E9546B;
-  display: inline-block; 
+  border-color: #e9546b;
+  display: inline-block;
   cursor: pointer;
-  color: #E9546B;
+  color: #e9546b;
   border-radius: 10px;
   padding: 80px 0;
-  margin:5px;
+  margin: 5px;
 }
-.topButton:hover{
+.topButton:hover {
   color: white;
-  background-color: #E9546B;
+  background-color: #e9546b;
 }
 
 .jokearea {
@@ -108,18 +108,18 @@ h1{
 .sendButton {
   width: 200px;
   height: 50px;
-  display: inline-block; 
+  display: inline-block;
   cursor: pointer;
-  background-color: #E9546B;
+  background-color: #e9546b;
   color: white;
-  box-shadow: 0px 0px 0px 3px #E9546B;
+  box-shadow: 0px 0px 0px 3px #e9546b;
   border: dashed 1px white;
-  margin : 10px;
+  margin: 10px;
   padding: 10px;
 }
 .sendButton:hover {
   background-color: white;
-  color: #E9546B;
+  color: #e9546b;
   box-shadow: 0px 0px 0px 3px white;
   border: dashed 1px #E9546B;
 }
