@@ -6,7 +6,8 @@ import {
   setRestaurants,
   setWeather,
   setLocationId,
-  setActivities
+  setActivities,
+  changeLoading
 } from "../redux";
 import "../style/DateGenerator.css";
 import Activities from "./Activities";
@@ -25,6 +26,7 @@ function DateGenerator() {
   const rWeather = useSelector(state => state.weather);
   const rActivities = useSelector(state => state.activities);
   const rLocationId = useSelector(state => state.locationId);
+  const isLoading = useSelector(state => state.isLoading);
 
   //Functions to update Redux state
   const changeDate = param => {
@@ -49,7 +51,7 @@ function DateGenerator() {
   //Boolean to render results
   let [showRestaurants, setShowRestaurants] = useState(false);
   let [showActivities, setShowActivities] = useState(false);
-  let [isloading, setIsLoading] = useState(true);
+  // let [isloading, setIsLoading] = useState(true);
 
   //User input values
   let zipcodeFirst = useRef(null);
@@ -71,7 +73,9 @@ function DateGenerator() {
     await getActivity(true, 1066456);
     await setShowRestaurants(showRes.current.checked);
     await setShowActivities(showAct.current.checked);
-    await setIsLoading(false);
+    // await setIsLoading(false);
+
+    setTimeout(async()=>{dispatch(await changeLoading(true))},8000);
   };
 
   const addDays = (startDate, days) => {
@@ -89,7 +93,7 @@ function DateGenerator() {
         method: "GET",
         headers: {
           "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
-          "x-rapidapi-key": //REPLACE ME
+          "x-rapidapi-key": ""
         }
       }
     )
@@ -97,7 +101,7 @@ function DateGenerator() {
       .then(res => {
         const location_id = res.data[0].result_object.location_id;
         updateLocationId(location_id);
-        // console.log(location_id);
+        console.log("loaction_id",location_id);
         // 1066456
         /* Get restaurants */
         fetch(
@@ -106,19 +110,20 @@ function DateGenerator() {
             method: "GET",
             headers: {
               "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
-              "x-rapidapi-key":
+              "x-rapidapi-key":""
                 //REPLACE ME
             }
           }
         )
           .then(response => response.json())
           .then(res => {
-            // console.log(res);
+            console.log("fetchres",res);
             res.data.forEach(restaurant => {
               tempRestaurants.push(restaurant);
             });
           })
           .then(() => {
+            console.log("temP",tempRestaurants)
             updateRestaurants(tempRestaurants);
           })
           .catch(err => {
@@ -147,7 +152,7 @@ function DateGenerator() {
         method: "GET",
         headers: {
           "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
-          "x-rapidapi-key": //REPLACE ME
+          "x-rapidapi-key": ""
         }
       }
     )
@@ -185,7 +190,7 @@ function DateGenerator() {
             method: "GET",
             headers: {
               "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
-              "x-rapidapi-key":
+              "x-rapidapi-key":""
                 //REPLACE ME
             }
           }
@@ -207,7 +212,7 @@ function DateGenerator() {
             method: "GET",
             headers: {
               "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
-              "x-rapidapi-key":
+              "x-rapidapi-key":""
                 //REPLACE ME
             }
           }
@@ -276,8 +281,8 @@ function DateGenerator() {
         <button className="submit inputField" onClick={onSubmit}>
           Generate
         </button>
-        {!isloading && showRestaurants && <Restaurants />}
-        {!isloading && showActivities && <Activities />}
+        {isLoading && showRestaurants && <Restaurants />}
+        {isLoading && showActivities && <Activities />}
       </div>
     </div>
   );
