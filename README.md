@@ -1,6 +1,8 @@
 _This was created during our time as a engineers-in-training at <a href="https://www.codechrysalis.io/" target="_blank">Code Chrysalis</a>._
 
-<img src="images/tara.png" alt="" style="max-width:300px; margin: 0 auto; display:block;">
+<p align="center">
+<img src="images/tara.png" alt="" width="300" >
+</p>
 
 # TARA: your digital dating assistant
 
