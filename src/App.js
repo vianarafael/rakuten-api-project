@@ -22,11 +22,11 @@ function App() {
       <div className="menus">
         <div className="topButton" onClick={() => clickFunction("generator")}>
           <img src={icon1} alt="icon1"></img>
-          <div>DATE GENERATOR</div>
+          <div>Do you need help planning a date?</div>
         </div>
         <div className="topButton" onClick={() => clickFunction("support")}>
             <img src={icon2} alt="icon2" className="default"></img>
-          <div>DATE SUPPORT</div>
+          <div>Do you need help breaking the ice?</div>
         </div>
       </div>
     );
@@ -37,8 +37,16 @@ function App() {
   }
   return (
     <React.Fragment>
-      <h1 onClick={() => clickFunction("top")}>Team RATA dating App</h1>
+      <nav className="mainNav">
+        <img src="tara.svg" className="tara" alt="" />
+        <a href="#" onClick={() => clickFunction("top")}><p >Tara</p></a>
+        <p className="tagline">Your digital dating assistant</p>
+      </nav>
+      {/* <h1 onClick={() => clickFunction("top")}>Team RATA dating App</h1> */}
       <div className="App">{body}</div>
+      <div className="footer">
+        <p>Made with ❤️ by Travis, Asami, Rafael, Ashley</p>
+      </div>
     </React.Fragment>
   );
 }

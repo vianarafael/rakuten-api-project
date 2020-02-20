@@ -8,7 +8,59 @@ body {
   margin: 20px auto;
   padding: 20px;
   color: #595757;
+  margin-top: 180px;
   /* border-radius: 20px; */
+}
+
+.mainNav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 150px;
+  width: 100%;
+  background-color: rgb(255, 88, 100);
+}
+
+.mainNav a {
+  text-decoration: none;
+}
+.mainNav a:hover {
+  text-decoration: none;
+}
+.mainNav a p {
+  color: white;
+  font-size: 75px;
+  margin: 0 auto;
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: -20px;
+}
+
+.mainNav .tagline {
+  font-size: 25px;
+  color: white;
+}
+
+.tara {
+  display: inline-block;
+  max-width: 150px;
+  vertical-align: top;
+  margin-right: -40px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  height: 50px;
+  background-color: rgb(255, 88, 100);
+  width: 100%;
+  padding: 10px 0;
+}
+
+.footer p {
+  text-align: center;
+  color: white;
+  font-size: 18px;
 }
 
 h1 {
@@ -21,7 +73,7 @@ h1 {
   margin: 0 auto;
   font-size: 30px;
 }
-.menus{
+.menus {
   margin: 10% auto;
   position: relative;
 }
@@ -39,8 +91,11 @@ h1 {
   cursor: pointer;
   color: #e9546b;
   border-radius: 10px;
-  padding: 40px 0;
+  padding: 10px;
+  padding-top: 25px;
   margin: 5px;
+  font-size: 20px;
+  /* vertical-align: top; */
 }
 .topButton:hover {
   color: white;
@@ -49,7 +104,6 @@ h1 {
 .topButton * {
   margin: 10px;
 }
-
 
 .updatejoke {
   width: 50px;
@@ -114,30 +168,39 @@ h1 {
 
 .memo {
   position: relative;
-  background: #FDEEED;
-  border-left:4px dotted rgba(0,0,0,.1);
-  border-right:4px dotted rgba(0,0,0,.1);
-  box-shadow:0 0 5px rgba(0,0,0,.2);
+  background: #fdeeed;
+  border-left: 4px dotted rgba(0, 0, 0, 0.1);
+  border-right: 4px dotted rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   padding: 1em;
   color: #65513f;
   width: 350px;
   margin: 50px auto;
-  transform: rotate(-4deg); 
+  transform: rotate(-4deg);
 }
-.masking-tape{
+.masking-tape {
   position: absolute;
   top: -1em;
   left: 30%;
-  width:130px;
-  height:30px;
-  background-image: linear-gradient(-45deg, rgba(227,155,140,.4) 25%, transparent 25%, transparent 50%, rgba(227,155,140,.4) 50%, rgba(227,155,140,.4) 75%, transparent 75%, transparent 100%);
+  width: 130px;
+  height: 30px;
+  background-image: linear-gradient(
+    -45deg,
+    rgba(227, 155, 140, 0.4) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(227, 155, 140, 0.4) 50%,
+    rgba(227, 155, 140, 0.4) 75%,
+    transparent 75%,
+    transparent 100%
+  );
   background-size: 20px 20px;
-  border-left:2px dotted rgba(0,0,0,.1);
-  border-right:2px dotted rgba(0,0,0,.1);
-  box-shadow:0 0 5px rgba(0,0,0,.2);
+  border-left: 2px dotted rgba(0, 0, 0, 0.1);
+  border-right: 2px dotted rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   padding: 0.25em 2em;
   color: #65513f;
-  transform: rotate(-4deg); 
+  transform: rotate(-4deg);
 }
 .memo p {
   color: #65513f;
@@ -146,6 +209,6 @@ h1 {
 }
 
 .copyButton {
-  width:50px;
-  height:50px;
+  width: 50px;
+  height: 50px;
 }
