@@ -5,6 +5,7 @@ const initialState = {
   user: "",
   joke: "joke area",
   date: "",
+  locationId: "",
   location: {
     city: "",
     zipcodeFirst: "",
@@ -13,7 +14,8 @@ const initialState = {
   restaurants: [],
   activities: [],
   selectedRestaurant: 0,
-  selectedActivity: 0
+  selectedActivity: 0,
+  weather: -1
 };
 
 export const changeJoke = joke => {
@@ -78,6 +80,20 @@ export const setSelectedActivity = index => {
   };
 };
 
+export const setWeather = weather => {
+  return {
+    type: "SELECT_WEATHER",
+    weather
+  };
+};
+
+export const setLocationId = id => {
+  return {
+    type: "SELECT_LOC_ID",
+    id
+  };
+};
+
 const reducer = (state = initialState, action) => {
   // eslint-disable-next-line default-case
   switch (action.type) {
@@ -107,6 +123,12 @@ const reducer = (state = initialState, action) => {
     }
     case "SELECT_ACTIVITY": {
       return { ...state, index: action.index };
+    }
+    case "SELECT_WEATHER": {
+      return { ...state, weather: action.weather };
+    }
+    case "SELECT_LOC_ID": {
+      return { ...state, locationId: action.locationId };
     }
   }
   return state;

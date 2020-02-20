@@ -11,25 +11,14 @@ import { setActivities, setSelectedActivity } from "../redux";
 
 function Activities() {
   const dispatch = useDispatch();
+  const selectedActivity = useSelector(state => state.selectedActivity);
+  const rActivity = useSelector(state => state.activities);
 
-  // const selectedActivity = useSelector(state => state.selectedActivity);
-  // const date = useSelector(state => state.date);
-  const location = useSelector(state => state.location);
-
-  // const city = location.city;
-  const zipcode = location.zipcodeFirst + "-" + location.zipcodeSecond;
-
-  // const locationId = getLocationId(city);
-  // console.log("locationId", locationId);
-  // const weather = getWeather(zipcode, date);
-  // console.log("weather", weather);
-
-  // const activitiesList = async (weather = true, city) => {
-  //   const locationid = getLocationId(city);
-  //   const results = await getActivity(weather, locationid);
-  //   await console.log("results :", results);
-  // };
-  // dispatch(setActivities(activitiesList));
+  //Activity info
+  console.log("res array from state", rActivity);
+  console.log("render index", selectedActivity);
+  console.log("res at index:", rActivity[selectedActivity]);
+  const res = rActivity[selectedActivity];
 
   async function changeActivity() {
     const locationId = getLocationId();

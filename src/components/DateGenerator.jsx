@@ -1,6 +1,13 @@
 import React, { useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setDate, setLocation, setRestaurants } from "../redux";
+import {
+  setDate,
+  setLocation,
+  setRestaurants,
+  setWeather,
+  setLocationId,
+  setActivities
+} from "../redux";
 import "../style/DateGenerator.css";
 import Activities from "./Activities";
 import Restaurants from "./Restaurants";
@@ -15,6 +22,9 @@ function DateGenerator() {
   const rDate = useSelector(state => state.date);
   const rLocation = useSelector(state => state.location); //contains city and zipcode
   const rRestaurants = useSelector(state => state.restaurants);
+  const rWeather = useSelector(state => state.weather);
+  const rActivities = useSelector(state => state.activities);
+  const rLocationId = useSelector(state => state.locationId);
 
   //Functions to update Redux state
   const changeDate = param => {
@@ -25,6 +35,15 @@ function DateGenerator() {
   };
   const updateLocation = location => {
     dispatch(setLocation(location));
+  };
+  const updateWeather = weather => {
+    dispatch(setWeather(weather));
+  };
+  const updateActivities = activities => {
+    dispatch(setActivities(activities));
+  };
+  const updateLocationId = id => {
+    dispatch(setLocationId(id));
   };
 
   //Boolean to render results
@@ -46,8 +65,11 @@ function DateGenerator() {
       zipcodeFirst: zipcodeFirst.current.value,
       zipcodeSecond: zipcodeSecond.current.value
     };
+    const zip = rLocation.zipcodeFirst + "-" + rLocation.zipcodeSecond;
     updateLocation(newLocation);
     getRestaurants(newLocation.city);
+    getWeather(rLocation.city, zip, rDate);
+    getActivity(true, 1066456);
   };
 
   const addDays = (startDate, days) => {
@@ -64,14 +86,15 @@ function DateGenerator() {
       {
         method: "GET",
         headers: {
-          "x-rapidapi-host": "", //REPLACE ME
-          "x-rapidapi-key": "" //EPLACE ME
+          "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
+          "x-rapidapi-key": "61c1e2f78bmsh58fd7892ba2ab56p1f7b26jsnc79f5de9043d"
         }
       }
     )
       .then(response => response.json())
       .then(res => {
         const location_id = res.data[0].result_object.location_id;
+        updateLocationId(location_id);
         // console.log(location_id);
         // 1066456
         /* Get restaurants */
@@ -80,8 +103,9 @@ function DateGenerator() {
           {
             method: "GET",
             headers: {
-              "x-rapidapi-host": "", //REPLACE ME
-              "x-rapidapi-key": "" //EPLACE ME
+              "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
+              "x-rapidapi-key":
+                "61c1e2f78bmsh58fd7892ba2ab56p1f7b26jsnc79f5de9043d"
             }
           }
         )
@@ -103,6 +127,103 @@ function DateGenerator() {
         // console.log(err, " location ID");
       });
     // console.log("stateRes", rRestaurants);
+  };
+
+  //WEATHER API REQUEST//
+  /* Get location ID */
+  // const location = "Shibuya";
+  // const zipcode = "107-0062";
+  // const date = "2020-02-22";
+
+  // let goodWeather = -1
+
+  const getWeather = (location, zipcode, date) => {
+    const dateTime = `${date} 00:00:00`;
+    fetch(
+      `https://community-open-weather-map.p.rapidapi.com/forecast?q=${location}&zip=${zipcode}`,
+      {
+        method: "GET",
+        headers: {
+          "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
+          "x-rapidapi-key": "61c1e2f78bmsh58fd7892ba2ab56p1f7b26jsnc79f5de9043d"
+        }
+      }
+    )
+      .then(response => response.json())
+      .then(response => {
+        return response.list.forEach(item => {
+          if (item.dt_txt.includes(dateTime)) {
+            // console.log(item.weather[0].id);
+            if (item.weather[0].id < 800) {
+              updateWeather(false);
+            } else {
+              updateWeather(true);
+            }
+          }
+        });
+      })
+      .then(res => {
+        // console.log(goodWeather);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  // let goodWeather = false;
+  // const location = 1066456;
+  const weatherAppropriateActivities = [];
+
+  const getActivity = (goodWeather, location) => {
+    if (goodWeather !== -1) {
+      if (goodWeather) {
+        fetch(
+          `https://tripadvisor1.p.rapidapi.com/attractions/list?limit=30&subcategory=47&location_id=${location}`,
+          {
+            method: "GET",
+            headers: {
+              "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
+              "x-rapidapi-key":
+                "61c1e2f78bmsh58fd7892ba2ab56p1f7b26jsnc79f5de9043d"
+            }
+          }
+        )
+          .then(response => response.json())
+          .then(response => {
+            response.data.forEach(activity => {
+              weatherAppropriateActivities.push(activity);
+            });
+          })
+          .then(() => updateActivities(weatherAppropriateActivities))
+          .catch(err => {
+            console.log(err);
+          });
+      } else {
+        fetch(
+          `https://tripadvisor1.p.rapidapi.com/attractions/list?limit=30&subcategory=20&location_id=${location}`,
+          {
+            method: "GET",
+            headers: {
+              "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
+              "x-rapidapi-key":
+                "61c1e2f78bmsh58fd7892ba2ab56p1f7b26jsnc79f5de9043d"
+            }
+          }
+        )
+          .then(response => response.json())
+          .then(response => {
+            response.data.forEach(activity => {
+              weatherAppropriateActivities.push(activity);
+            });
+          })
+          .then(() => {
+            updateActivities(weatherAppropriateActivities);
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      }
+    }
   };
 
   //Render
