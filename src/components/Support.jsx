@@ -53,8 +53,8 @@ function Support() {
     dispatch(changeJoke(decideJoke()));
   }
 
-  const sendMail = () => {
-    /* TODO call send api*/
+  const copyFunction = () => {
+    
   };
 
   const clickUser = param => {
@@ -64,21 +64,22 @@ function Support() {
 
   return (
     <div className="Support">
-      <h3>Date Support</h3>
+      <div className="joketitle">You need joke ?</div>
       <div className="selectParts">{parts}</div>
-      <div className="jokearea">
-        <div>{joke}</div>
+
+      <div class="memo">
+        <span class="masking-tape">
+        </span><p>{joke}</p>
       </div>
 
-
-      <div
+      {/* <div
         className="sendButton"
         onClick={() => {
-          sendMail();
+          copyFunction();
         }}
       >
         COPY
-      </div>
+      </div> */}
     </div>
   );
 }

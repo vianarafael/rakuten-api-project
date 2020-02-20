@@ -25,7 +25,7 @@ function App() {
           <div>DATE GENERATOR</div>
         </div>
         <div className="topButton" onClick={() => clickFunction("support")}>
-          <img src={icon2} alt="icon2"></img>
+            <img src={icon2} alt="icon2" className="default"></img>
           <div>DATE SUPPORT</div>
         </div>
       </div>
