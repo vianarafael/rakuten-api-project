@@ -4,25 +4,29 @@ import { useSelector, useDispatch } from "react-redux";
 import { changeView } from "./redux";
 import Support from "./components/Support";
 import DateGenerator from "./components/DateGenerator";
+import icon1 from "./images/icon1.png";
+import icon2 from "./images/icon2.png";
 
 function App() {
   const view = useSelector(state => state.view);
   const dispatch = useDispatch();
 
   const clickFunction = param => {
-    console.log(param);
+    console.log("change view:", param);
     dispatch(changeView(param));
   };
 
   let body;
   if (view === "top") {
     body = (
-      <div>
+      <div className="menus">
         <div className="topButton" onClick={() => clickFunction("generator")}>
-          DATE GENERATOR
+          <img src={icon1} alt="icon1"></img>
+          <div>Do you need help planning a date?</div>
         </div>
         <div className="topButton" onClick={() => clickFunction("support")}>
-          DATE SUPPORT
+            <img src={icon2} alt="icon2" className="default"></img>
+          <div>Do you need help breaking the ice?</div>
         </div>
       </div>
     );
@@ -33,8 +37,16 @@ function App() {
   }
   return (
     <React.Fragment>
-      <h1 onClick={() => clickFunction("top")}>Team RATA dating App</h1>
+      <nav className="mainNav">
+        <img src="tara.svg" className="tara" alt="" />
+        <a href="#" onClick={() => clickFunction("top")}><p >Tara</p></a>
+        <p className="tagline">Your digital dating assistant</p>
+      </nav>
+      {/* <h1 onClick={() => clickFunction("top")}>Team RATA dating App</h1> */}
       <div className="App">{body}</div>
+      <div className="footer">
+        <p>Made with ❤️ by Travis, Asami, Rafael, Ashley</p>
+      </div>
     </React.Fragment>
   );
 }

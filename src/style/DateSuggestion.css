@@ -1,0 +1,11 @@
+.DateSuggestion {
+  border: dashed white 2px;
+  margin: 10px;
+}
+
+h3 {
+  text-align: left;
+  margin-left: 10px;
+  color: darkgrey;
+  font-size: small;
+}

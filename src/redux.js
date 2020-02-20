@@ -9,14 +9,18 @@ const initialState = {
     city: "",
     zipcodeFirst: "",
     zipcodeSecond: ""
-  }
+  },
+  restaurants: [],
+  activities: [],
+  selectedRestaurant: 0,
+  selectedActivity: 0
 };
 
 export const changeJoke = joke => {
   return {
     type: "CHANGE_JOKE",
     joke
-  }
+  };
 };
 
 export const changeView = view => {
@@ -26,12 +30,12 @@ export const changeView = view => {
   };
 };
 
-export const selectUser = (user) => {
-    return {
-      type: "SELECT_USER",
-      user
-    };
+export const selectUser = user => {
+  return {
+    type: "SELECT_USER",
+    user
   };
+};
 export const setDate = date => {
   return {
     type: "SET_DATE",
@@ -43,6 +47,34 @@ export const setLocation = location => {
   return {
     type: "SET_LOCATION",
     location
+  };
+};
+
+export const setRestaurants = restaurants => {
+  return {
+    type: "SET_RESTAURANTS",
+    restaurants
+  };
+};
+
+export const setActivities = activities => {
+  return {
+    type: "SET_ACTIVITIES",
+    activities
+  };
+};
+
+export const setSelectedRestaurant = index => {
+  return {
+    type: "SELECT_RESTAURANT",
+    index
+  };
+};
+
+export const setSelectedActivity = index => {
+  return {
+    type: "SELECT_ACTIVITY",
+    index
   };
 };
 
@@ -63,6 +95,18 @@ const reducer = (state = initialState, action) => {
     }
     case "SELECT_USER": {
       return { ...state, user: action.user };
+    }
+    case "SET_RESTAURANTS": {
+      return { ...state, restaurants: [...action.restaurants] };
+    }
+    case "SET_ACTIVITIES": {
+      return { ...state, activities: action.activities };
+    }
+    case "SELECT_RESTAURANT": {
+      return { ...state, index: action.index };
+    }
+    case "SELECT_ACTIVITY": {
+      return { ...state, index: action.index };
     }
   }
   return state;

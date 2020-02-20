@@ -1,84 +1,85 @@
 import React from "react";
 import "../style/App.css";
-import {useSelector, useDispatch} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectUser, changeJoke } from "../redux";
 
 function Support() {
   const selected = useSelector(state => state.user);
   const joke = useSelector(state => state.joke);
   const dispatch = useDispatch();
-  const usersList = ["Sora", "Hanako", "Mami"]; // TODO ADD email??
+  const jokeList = ["CHEESY", "DAD JOKE", "COOL GUY"];
 
-  let parts = usersList.map((usr, index) => {
+  let parts = jokeList.map((joke, index) => {
     if (index !== selected) {
       return (
         <div
-          className="user"
+          className="option"
           key={index}
           onClick={() => {
             clickUser(index);
+            getJoke();
           }}
         >
-          <span role="img" aria-label="HappyFace">
-            😄
-          </span>
-          <div>
-          {usr}
-          </div>
+          <div>{joke}</div>
         </div>
       );
     }
     return (
       <div
-        className="user select"
+        className="option select"
         key={index}
         onClick={() => {
           clickUser(index);
+          getJoke();
         }}
       >
-        <span role="img" aria-label="RelievedFace">
-          😌
-        </span>
-        <div>{usr}</div>
+        <div>{joke}</div>
       </div>
     );
   });
 
   const getJoke = () => {
-    console.log("getJoke");
-    /* TODO call joke api*/
-    dispatch(changeJoke("say something!"));
+    const decideJoke = () => {
+      const jokes = [
+        "Why didn't the lifeguard save the hippie? Because he was too far out. Ha!",
+        "Did you hear about the magic tractor? It was driving down the road and suddenly turned into a field!",
+        "What's on the menu? ME  N  U",
+        "If I freeze, it's not a computer virus. I was just stunned by your beauty.",
+        "I'm no photographer, but I can picture us together",
+        "Are you a font? Because you're just my type",
+      ];
+      return jokes[Math.floor(Math.random() * jokes.length)];
+    };
+    dispatch(changeJoke(decideJoke()));
   }
 
-  const sendMail = () => {
-    console.log("send");
-    /* TODO call send api*/
+  const copyFunction = () => {
+    
   };
 
   const clickUser = param => {
-    console.log("select", param);
     // set user
     dispatch(selectUser(param));
   };
 
   return (
     <div className="Support">
-      <h3>Date Support</h3>
-      <div className="jokearea">{joke}</div>
-      <div className="updatejoke" onClick={()=>{getJoke()}}>🔄</div>
+      <div className="joketitle">Do you need help breaking the ice?</div>
+      <div className="selectParts">{parts}</div>
 
-      <div className="sendList">
-        {parts}
+      <div class="memo">
+        <span class="masking-tape">
+        </span><p>{joke}</p>
       </div>
 
-      <div
+      {/* <div
         className="sendButton"
         onClick={() => {
-          sendMail();
+          copyFunction();
         }}
       >
-        SEND!
-      </div>
+        COPY
+      </div> */}
     </div>
   );
 }

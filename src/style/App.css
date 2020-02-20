@@ -1,6 +1,5 @@
-
 body {
-  background-color: #E9546B;
+  background-color: #e9546b;
 }
 .App {
   text-align: center;
@@ -9,88 +8,207 @@ body {
   margin: 20px auto;
   padding: 20px;
   color: #595757;
+  margin-top: 180px;
   /* border-radius: 20px; */
 }
 
-h1{
-  color:  white;
+.mainNav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 150px;
+  width: 100%;
+  background-color: rgb(255, 88, 100);
+}
+
+.mainNav a {
+  text-decoration: none;
+}
+.mainNav a:hover {
+  text-decoration: none;
+}
+.mainNav a p {
+  color: white;
+  font-size: 75px;
+  margin: 0 auto;
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: -20px;
+}
+
+.mainNav .tagline {
+  font-size: 25px;
+  color: white;
+}
+
+.tara {
+  display: inline-block;
+  max-width: 150px;
+  vertical-align: top;
+  margin-right: -40px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  height: 50px;
+  background-color: rgb(255, 88, 100);
+  width: 100%;
+  padding: 10px 0;
+}
+
+.footer p {
+  text-align: center;
+  color: white;
+  font-size: 18px;
+}
+
+h1 {
+  color: white;
   padding: 50px 0 0 0;
   cursor: pointer;
 }
 
-.topButton{
+.joketitle {
+  margin: 0 auto;
+  font-size: 30px;
+}
+.menus {
+  margin: 10% auto;
+  position: relative;
+}
+.topButton img {
+  width: 50px;
+  height: 50px;
+}
+
+.topButton {
   width: 200px;
   height: 200px;
   border: 1px solid;
-  border-color: #E9546B;
-  display: inline-block; 
+  border-color: #e9546b;
+  display: inline-block;
   cursor: pointer;
-  color: #E9546B;
+  color: #e9546b;
   border-radius: 10px;
-  padding: 80px 0;
-  margin:5px;
+  padding: 10px;
+  padding-top: 25px;
+  margin: 5px;
+  font-size: 20px;
+  /* vertical-align: top; */
 }
-.topButton:hover{
+.topButton:hover {
   color: white;
-  background-color: #E9546B;
+  background-color: #e9546b;
 }
-.jokearea {
-    /* TODO  change design*/
-    width: 300px;
-    height: 50px;
-    border: 1px solid;
-    border-color: #898989;
-    margin: 0 auto;
-    display: inline-block; 
+.topButton * {
+  margin: 10px;
 }
+
 .updatejoke {
-  /* TODO  change design*/
   width: 50px;
   height: 50px;
   display: inline-block;
   cursor: pointer;
 }
 
-.user {
-  /* TODO  change design*/
-  width: 350px;
-  height: 50px;
+.option {
+  width: 100px;
+  height: 30px;
   border: 1px solid;
-  border-color: #898989;
-  margin: 10px auto;
+  margin: 10px;
   cursor: pointer;
-}
-.user * {
   display: inline-block;
-  font-size: 30px;
+  border-radius: 20px;
+  background-color: white;
+  border-color: #e9546b;
+  color: #e9546b;
 }
-.user div {
-  /* border: 1px solid;
-  border-color: #898989; */
-  width: 300px;
-  margin: 0 0 0 10px;
+.option * {
+  font-size: 15px;
+  margin: 5px auto;
 }
 
 .select {
-  background-color: #FADBDA;
+  background-color: #e9546b;
+  color: white;
 }
 
 .sendButton {
-  width: 200px;
+  width: 100px;
   height: 50px;
-  display: inline-block; 
+  display: inline-block;
   cursor: pointer;
-  background-color: #E9546B;
+  background-color: #e9546b;
   color: white;
-  box-shadow: 0px 0px 0px 3px #E9546B;
+  box-shadow: 0px 0px 0px 3px #e9546b;
   border: dashed 1px white;
-  margin : 10px;
+  margin: 10px;
   padding: 10px;
+  -webkit-transition: width 0.3s ease, height 0.3s ease;
+  -moz-transition: width 0.3s ease, height 0.3s ease;
+  -o-transition: width 0.3s ease, height 0.3s ease;
+  -ms-transition: width 0.3s ease, height 0.3s ease;
+  transition: width 0.3s ease, height 0.3s ease;
 }
 .sendButton:hover {
   background-color: white;
-  color: #E9546B;
+  color: #e9546b;
   box-shadow: 0px 0px 0px 3px white;
-  border: dashed 1px #E9546B;
+  border: dashed 1px #e9546b;
+}
+.sendButton:active {
+  width: 110px;
+  height: 55px;
+  background-color: #e9546b;
+  color: white;
+  box-shadow: 0px 0px 0px 3px #e9546b;
+  border: dashed 1px white;
 }
 
+.memo {
+  position: relative;
+  background: #fdeeed;
+  border-left: 4px dotted rgba(0, 0, 0, 0.1);
+  border-right: 4px dotted rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  padding: 1em;
+  color: #65513f;
+  width: 350px;
+  margin: 50px auto;
+  transform: rotate(-4deg);
+}
+.masking-tape {
+  position: absolute;
+  top: -1em;
+  left: 30%;
+  width: 130px;
+  height: 30px;
+  background-image: linear-gradient(
+    -45deg,
+    rgba(227, 155, 140, 0.4) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(227, 155, 140, 0.4) 50%,
+    rgba(227, 155, 140, 0.4) 75%,
+    transparent 75%,
+    transparent 100%
+  );
+  background-size: 20px 20px;
+  border-left: 2px dotted rgba(0, 0, 0, 0.1);
+  border-right: 2px dotted rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  padding: 0.25em 2em;
+  color: #65513f;
+  transform: rotate(-4deg);
+}
+.memo p {
+  color: #65513f;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.copyButton {
+  width: 50px;
+  height: 50px;
+}
