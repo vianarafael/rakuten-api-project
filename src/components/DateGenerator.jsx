@@ -95,7 +95,7 @@ function DateGenerator() {
         method: "GET",
         headers: {
           "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
-          "x-rapidapi-key": process.env.REACT_APP.TRIPAD_KEY
+          "x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY_TRIP
         }
       }
     )
@@ -112,7 +112,7 @@ function DateGenerator() {
             method: "GET",
             headers: {
               "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
-              "x-rapidapi-key": process.env.REACT_APP.TRIPAD_KEY
+              "x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY_TRIP
               //REPLACE ME
             }
           }
@@ -154,7 +154,7 @@ function DateGenerator() {
         method: "GET",
         headers: {
           "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
-          "x-rapidapi-key": process.env.REACT_APP.WEATHER_KEY
+          "x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY_WEATHER
         }
       }
     )
@@ -192,7 +192,7 @@ function DateGenerator() {
             method: "GET",
             headers: {
               "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
-              "x-rapidapi-key": process.env.REACT_APP.TRIPAD_KEY
+              "x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY_TRIP
               //REPLACE ME
             }
           }
@@ -214,7 +214,7 @@ function DateGenerator() {
             method: "GET",
             headers: {
               "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
-              "x-rapidapi-key": process.env.REACT_APP.TRIPAD_KEY
+              "x-rapidapi-key": process.env.REACT_APP_RAPID_API_KEY_TRIP
               //REPLACE ME
             }
           }
