@@ -3,3 +3,10 @@
   padding: 20px;
   margin: 10px;
 }
+.resultImg{
+  width:200px;
+  margin:10px;
+}
+.restaurant-card{
+  max-width: 300px;
+}

@@ -11,48 +11,45 @@ import { setActivities, setSelectedActivity } from "../redux";
 
 function Activities() {
   const dispatch = useDispatch();
+  const selectedActivity = useSelector(state => state.selectedActivity);
+  const rActivity = useSelector(state => state.activities);
 
-  // const selectedActivity = useSelector(state => state.selectedActivity);
-  // const date = useSelector(state => state.date);
-  const location = useSelector(state => state.location);
-
-  // const city = location.city;
-  const zipcode = location.zipcodeFirst + "-" + location.zipcodeSecond;
-
-  // const locationId = getLocationId(city);
-  // console.log("locationId", locationId);
-  // const weather = getWeather(zipcode, date);
-  // console.log("weather", weather);
-
-  // const activitiesList = async (weather = true, city) => {
-  //   const locationid = getLocationId(city);
-  //   const results = await getActivity(weather, locationid);
-  //   await console.log("results :", results);
-  // };
-  // dispatch(setActivities(activitiesList));
+  //Activity info
+  const res = rActivity[selectedActivity];
+  const name = res.name;
+  const address = res.address; //address_obj for object-form
+  let imgSrc
+  if(res.photo.images === undefined){
+    imgSrc = ""
+  } else {
+    imgSrc = res.photo.images.medium.url;
+  }
+  const webUrl = res.web_url;
+  const hours = res.hours; //obj "res.hours.week_ranges" for array of days
+  // const bookingUrl = res.booking.url; //res.booking.provider for provider name i.e. GURUNAVI
 
   async function changeActivity() {
-    const locationId = getLocationId();
-    console.log("locationId", locationId);
-    //   console.log({ selectedActivity });
+    // const locationId = getLocationId();
+    // console.log("locationId", locationId);
     // const id = await getId();
     //   await console.log(id);
-    //   // if (selectedActivity < activities.length - 1) {
-    //   let nextActivity = selectedActivity + 1;
-    //   dispatch(setSelectedActivity(nextActivity));
-    //   // }
-    //   dispatch(setSelectedActivity(0));
-    // console.log("next activity", selectedActivity);
+      if (selectedActivity < rActivity.length - 1) {
+        let nextActivity = selectedActivity + 1;
+        dispatch(setSelectedActivity(nextActivity));
+      } else {
+       dispatch(setSelectedActivity(0));
+      }
+    console.log("next activity", selectedActivity);
   }
 
   return (
     <div className="Activities">
       <h3>ACTIVITY:</h3>
       <div className="activity-card">
-        <p>Activity Name Here</p>
-        <p>Activity Description: </p>
-        <p>Restaurant Address Here</p>
-        IMG: <img alt="activity" />
+      <div>{name}</div>
+        <img src={imgSrc} alt="activity"  className="resultImg" />
+        <div>{address}</div>
+        <a href={webUrl}>WEB SITE</a>
       </div>
       <button onClick={changeActivity}>Change Activity</button>
     </div>
