@@ -49,6 +49,7 @@ function DateGenerator() {
   //Boolean to render results
   let [showRestaurants, setShowRestaurants] = useState(false);
   let [showActivities, setShowActivities] = useState(false);
+  let [isloading, setIsLoading] = useState(true);
 
   //User input values
   let zipcodeFirst = useRef(null);
@@ -57,19 +58,20 @@ function DateGenerator() {
   let showRes = useRef(null);
   let showAct = useRef(null);
 
-  const onSubmit = () => {
-    setShowRestaurants(showRes.current.checked);
-    setShowActivities(showAct.current.checked);
+  const onSubmit = async () => {
     const newLocation = {
       city: cityInput.current.value,
       zipcodeFirst: zipcodeFirst.current.value,
       zipcodeSecond: zipcodeSecond.current.value
     };
     const zip = rLocation.zipcodeFirst + "-" + rLocation.zipcodeSecond;
-    updateLocation(newLocation);
-    getRestaurants(newLocation.city);
-    getWeather(rLocation.city, zip, rDate);
-    getActivity(true, 1066456);
+    await updateLocation(newLocation);
+    await getRestaurants(newLocation.city);
+    await getWeather(rLocation.city, zip, rDate);
+    await getActivity(true, 1066456);
+    await setShowRestaurants(showRes.current.checked);
+    await setShowActivities(showAct.current.checked);
+    await setIsLoading(false);
   };
 
   const addDays = (startDate, days) => {
@@ -87,7 +89,7 @@ function DateGenerator() {
         method: "GET",
         headers: {
           "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
-          "x-rapidapi-key": "61c1e2f78bmsh58fd7892ba2ab56p1f7b26jsnc79f5de9043d"
+          "x-rapidapi-key": //REPLACE ME
         }
       }
     )
@@ -105,7 +107,7 @@ function DateGenerator() {
             headers: {
               "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
               "x-rapidapi-key":
-                "61c1e2f78bmsh58fd7892ba2ab56p1f7b26jsnc79f5de9043d"
+                //REPLACE ME
             }
           }
         )
@@ -145,7 +147,7 @@ function DateGenerator() {
         method: "GET",
         headers: {
           "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
-          "x-rapidapi-key": "61c1e2f78bmsh58fd7892ba2ab56p1f7b26jsnc79f5de9043d"
+          "x-rapidapi-key": //REPLACE ME
         }
       }
     )
@@ -184,7 +186,7 @@ function DateGenerator() {
             headers: {
               "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
               "x-rapidapi-key":
-                "61c1e2f78bmsh58fd7892ba2ab56p1f7b26jsnc79f5de9043d"
+                //REPLACE ME
             }
           }
         )
@@ -206,7 +208,7 @@ function DateGenerator() {
             headers: {
               "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
               "x-rapidapi-key":
-                "61c1e2f78bmsh58fd7892ba2ab56p1f7b26jsnc79f5de9043d"
+                //REPLACE ME
             }
           }
         )
@@ -274,8 +276,8 @@ function DateGenerator() {
         <button className="submit inputField" onClick={onSubmit}>
           Generate
         </button>
-        {showRestaurants && <Restaurants />}
-        {showActivities && <Activities />}
+        {!isloading && showRestaurants && <Restaurants />}
+        {!isloading && showActivities && <Activities />}
       </div>
     </div>
   );
