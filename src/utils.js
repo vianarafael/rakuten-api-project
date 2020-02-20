@@ -58,10 +58,10 @@ export const getLocationId = (placeName = "Shibuya") => {
   })
     .then(response => {
       location = response.data.data[0].result_object.location_id;
-      console.log(
-        "getLocationId",
-        response.data.data[0].result_object.location_id
-      );
+      // console.log(
+      //   "getLocationId",
+      //   response.data.data[0].result_object.location_id
+      // );
     })
     .catch(error => {
       console.log(error);

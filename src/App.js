@@ -4,15 +4,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { changeView } from "./redux";
 import Support from "./components/Support";
 import DateGenerator from "./components/DateGenerator";
-import icon1 from "./images/icon1.png"
-import icon2 from "./images/icon2.png"
+import icon1 from "./images/icon1.png";
+import icon2 from "./images/icon2.png";
 
 function App() {
   const view = useSelector(state => state.view);
   const dispatch = useDispatch();
 
   const clickFunction = param => {
-    console.log(("change view:", param));
+    console.log("change view:", param);
     dispatch(changeView(param));
   };
 

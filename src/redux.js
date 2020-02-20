@@ -97,7 +97,7 @@ const reducer = (state = initialState, action) => {
       return { ...state, user: action.user };
     }
     case "SET_RESTAURANTS": {
-      return { ...state, restaurants: action.restaurants };
+      return { ...state, restaurants: [...action.restaurants] };
     }
     case "SET_ACTIVITIES": {
       return { ...state, activities: action.activities };

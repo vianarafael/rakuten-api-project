@@ -1,22 +1,37 @@
-import React, { useRef } from "react";
-import DatePicker from "react-datepicker";
+import React, { useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setDate, setLocation } from "../redux";
+import { setDate, setLocation, setRestaurants } from "../redux";
 import "../style/DateGenerator.css";
 import Activities from "./Activities";
 import Restaurants from "./Restaurants";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 function DateGenerator() {
   const dispatch = useDispatch();
-  const date = useSelector(state => state.date);
-  const today = new Date();
-  let showRestaurants = false;
-  let showActivities = false;
 
+  //Values from Redux state all values prefixed with "r"
+  const rDate = useSelector(state => state.date);
+  const rLocation = useSelector(state => state.location); //contains city and zipcode
+  const rRestaurants = useSelector(state => state.restaurants);
+
+  //Functions to update Redux state
   const changeDate = param => {
     dispatch(setDate(param));
   };
+  const updateRestaurants = restaurants => {
+    dispatch(setRestaurants(restaurants));
+  };
+  const updateLocation = location => {
+    dispatch(setLocation(location));
+  };
 
+  //Boolean to render results
+  let [showRestaurants, setShowRestaurants] = useState(false);
+  let [showActivities, setShowActivities] = useState(false);
+
+  //User input values
   let zipcodeFirst = useRef(null);
   let zipcodeSecond = useRef(null);
   let cityInput = useRef(null);
@@ -24,19 +39,73 @@ function DateGenerator() {
   let showAct = useRef(null);
 
   const onSubmit = () => {
-    showRestaurants = showRes.current.checked;
-    showActivities = showAct.current.checked;
+    setShowRestaurants(showRes.current.checked);
+    setShowActivities(showAct.current.checked);
     const newLocation = {
       city: cityInput.current.value,
       zipcodeFirst: zipcodeFirst.current.value,
       zipcodeSecond: zipcodeSecond.current.value
     };
-    console.log(newLocation);
-    console.log(showRes.current.checked);
-    console.log(showAct.current.checked);
-    dispatch(setLocation(newLocation));
+    updateLocation(newLocation);
+    getRestaurants(newLocation.city);
   };
 
+  const addDays = (startDate, days) => {
+    return new Date(startDate.getTime() + days * 24 * 60 * 60 * 1000);
+  };
+
+  //RESTAURANTS API REQUEST//
+  const tempRestaurants = [];
+  // let place = "Shibuya";
+  /* Get location ID */
+  const getRestaurants = place => {
+    fetch(
+      `https://tripadvisor1.p.rapidapi.com/locations/search?location_id=1&limit=1&sort=relevance&offset=0&lang=en_US&currency=USD&units=km&query=${place}`,
+      {
+        method: "GET",
+        headers: {
+          "x-rapidapi-host": "", //REPLACE ME
+          "x-rapidapi-key": "" //EPLACE ME
+        }
+      }
+    )
+      .then(response => response.json())
+      .then(res => {
+        const location_id = res.data[0].result_object.location_id;
+        // console.log(location_id);
+        // 1066456
+        /* Get restaurants */
+        fetch(
+          `https://tripadvisor1.p.rapidapi.com/restaurants/list?limit=30&lang=en_US&location_id=${location_id}`,
+          {
+            method: "GET",
+            headers: {
+              "x-rapidapi-host": "", //REPLACE ME
+              "x-rapidapi-key": "" //EPLACE ME
+            }
+          }
+        )
+          .then(response => response.json())
+          .then(res => {
+            // console.log(res);
+            res.data.forEach(restaurant => {
+              tempRestaurants.push(restaurant);
+            });
+          })
+          .then(() => {
+            updateRestaurants(tempRestaurants);
+          })
+          .catch(err => {
+            console.log(err, " restaurants");
+          });
+      })
+      .catch(err => {
+        // console.log(err, " location ID");
+      });
+    // console.log("stateRes", rRestaurants);
+  };
+
+  //Render
   return (
     <div className="DateGenerator">
       <h1 className="DateGenTitle">Plan your perfect day</h1>
@@ -44,10 +113,9 @@ function DateGenerator() {
         <span>
           Date:
           <DatePicker
-            className="date inputField"
-            selected={date}
+            selected={rDate}
             onChange={date => changeDate(date)}
-            maxDate={today + 5} //TODO this attribute doesnt work
+            maxDate={addDays(new Date(), 5)}
           />
         </span>
         <form>
@@ -85,8 +153,8 @@ function DateGenerator() {
         <button className="submit inputField" onClick={onSubmit}>
           Generate
         </button>
-        <Restaurants if showRestaurants />
-        <Activities if showActivities />
+        {showRestaurants && <Restaurants />}
+        {showActivities && <Activities />}
       </div>
     </div>
   );
