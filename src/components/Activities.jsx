@@ -15,12 +15,13 @@ function Activities() {
   const rActivity = useSelector(state => state.activities);
 
   //Activity info
+  console.log(rActivity)
   const res = rActivity[selectedActivity];
   const name = res.name;
   const address = res.address; //address_obj for object-form
   let imgSrc
-  if(res.photo.images === undefined){
-    imgSrc = ""
+  if(!res.hasOwnProperty('photo')){
+    imgSrc = "noimage.svg"
   } else {
     imgSrc = res.photo.images.medium.url;
   }

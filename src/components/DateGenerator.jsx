@@ -61,23 +61,27 @@ function DateGenerator() {
   let showAct = useRef(null);
 
   const onSubmit = async () => {
+    dispatch(await changeLoading(false));
     const newLocation = {
       city: cityInput.current.value,
       zipcodeFirst: zipcodeFirst.current.value,
       zipcodeSecond: zipcodeSecond.current.value
     };
     const zip = rLocation.zipcodeFirst + "-" + rLocation.zipcodeSecond;
-    await updateLocation(newLocation);
+    await dispatch(await setLocation(newLocation));
+    // await updateLocation(newLocation);
     await getRestaurants(newLocation.city);
+
     await getWeather(rLocation.city, zip, rDate);
     await getActivity(true, 1066456);
     await setShowRestaurants(showRes.current.checked);
     await setShowActivities(showAct.current.checked);
     // await setIsLoading(false);
+    // await dispatch(await changeLoading(true));
 
-    setTimeout(async () => {
-      dispatch(await changeLoading(true));
-    }, 15000);
+    // setTimeout(async () => {
+    //   dispatch(await changeLoading(true));
+    // }, 15000);
   };
 
   const addDays = (startDate, days) => {
@@ -124,9 +128,11 @@ function DateGenerator() {
               tempRestaurants.push(restaurant);
             });
           })
-          .then(() => {
+          .then(async() => {
             console.log("temP", tempRestaurants);
-            updateRestaurants(tempRestaurants);
+            // updateRestaurants(tempRestaurants);
+            dispatch(await setRestaurants(tempRestaurants));
+            dispatch(await changeLoading(true))
           })
           .catch(err => {
             console.log(err, " restaurants");
@@ -164,9 +170,11 @@ function DateGenerator() {
           if (item.dt_txt.includes(dateTime)) {
             // console.log(item.weather[0].id);
             if (item.weather[0].id < 800) {
-              updateWeather(false);
+              // updateWeather(false);
+              dispatch(setWeather(false));
             } else {
-              updateWeather(true);
+              // updateWeather(true);
+              dispatch(setWeather(true));
             }
           }
         });
@@ -203,7 +211,10 @@ function DateGenerator() {
               weatherAppropriateActivities.push(activity);
             });
           })
-          .then(() => updateActivities(weatherAppropriateActivities))
+          .then(() => {
+            dispatch(setActivities(weatherAppropriateActivities));
+            // updateActivities(weatherAppropriateActivities)
+          })
           .catch(err => {
             console.log(err);
           });
@@ -283,6 +294,8 @@ function DateGenerator() {
         <button className="submit inputField" onClick={onSubmit}>
           Generate
         </button>
+        {!isLoading && (showRestaurants || showActivities) ? 
+        <div class="loader">Loading...</div> : ""}
         {isLoading && showRestaurants && <Restaurants />}
         {isLoading && showActivities && <Activities />}
       </div>
