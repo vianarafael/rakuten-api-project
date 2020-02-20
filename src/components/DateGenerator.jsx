@@ -75,7 +75,9 @@ function DateGenerator() {
     await setShowActivities(showAct.current.checked);
     // await setIsLoading(false);
 
-    setTimeout(async()=>{dispatch(await changeLoading(true))},8000);
+    setTimeout(async () => {
+      dispatch(await changeLoading(true));
+    }, 8000);
   };
 
   const addDays = (startDate, days) => {
@@ -93,7 +95,7 @@ function DateGenerator() {
         method: "GET",
         headers: {
           "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
-          "x-rapidapi-key": ""
+          "x-rapidapi-key": process.env.REACT_APP.TRIPAD_KEY
         }
       }
     )
@@ -101,7 +103,7 @@ function DateGenerator() {
       .then(res => {
         const location_id = res.data[0].result_object.location_id;
         updateLocationId(location_id);
-        console.log("loaction_id",location_id);
+        console.log("loaction_id", location_id);
         // 1066456
         /* Get restaurants */
         fetch(
@@ -110,20 +112,20 @@ function DateGenerator() {
             method: "GET",
             headers: {
               "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
-              "x-rapidapi-key":""
-                //REPLACE ME
+              "x-rapidapi-key": process.env.REACT_APP.TRIPAD_KEY
+              //REPLACE ME
             }
           }
         )
           .then(response => response.json())
           .then(res => {
-            console.log("fetchres",res);
+            console.log("fetchres", res);
             res.data.forEach(restaurant => {
               tempRestaurants.push(restaurant);
             });
           })
           .then(() => {
-            console.log("temP",tempRestaurants)
+            console.log("temP", tempRestaurants);
             updateRestaurants(tempRestaurants);
           })
           .catch(err => {
@@ -152,7 +154,7 @@ function DateGenerator() {
         method: "GET",
         headers: {
           "x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
-          "x-rapidapi-key": ""
+          "x-rapidapi-key": process.env.REACT_APP.WEATHER_KEY
         }
       }
     )
@@ -190,8 +192,8 @@ function DateGenerator() {
             method: "GET",
             headers: {
               "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
-              "x-rapidapi-key":""
-                //REPLACE ME
+              "x-rapidapi-key": process.env.REACT_APP.TRIPAD_KEY
+              //REPLACE ME
             }
           }
         )
@@ -212,8 +214,8 @@ function DateGenerator() {
             method: "GET",
             headers: {
               "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
-              "x-rapidapi-key":""
-                //REPLACE ME
+              "x-rapidapi-key": process.env.REACT_APP.TRIPAD_KEY
+              //REPLACE ME
             }
           }
         )
