@@ -77,7 +77,7 @@ function DateGenerator() {
 
     setTimeout(async () => {
       dispatch(await changeLoading(true));
-    }, 8000);
+    }, 15000);
   };
 
   const addDays = (startDate, days) => {
