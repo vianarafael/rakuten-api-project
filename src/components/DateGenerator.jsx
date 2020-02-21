@@ -249,7 +249,7 @@ function DateGenerator() {
   //Render
   return (
     <div className="DateGenerator">
-      <h1 className="DateGenTitle">Plan your perfect day</h1>
+      <h1 className="DateGenTitle">Plan your perfect date</h1>
       <div className="inputContainer">
         <span>
           <span>Date: </span>
@@ -257,6 +257,7 @@ function DateGenerator() {
             className="date"
             selected={rDate}
             onChange={date => changeDate(date)}
+            minDate={new Date()}
             maxDate={addDays(new Date(), 5)}
           />
         </span>
@@ -293,7 +294,7 @@ function DateGenerator() {
           </span>
         </form>
         <button className="submit-button inputField" onClick={onSubmit}>
-          Generate
+          Show me a great date, Tara
         </button>
         {!isLoading && (showRestaurants || showActivities) ? (
           <div class="loader">Loading...</div>

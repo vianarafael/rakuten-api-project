@@ -3,10 +3,37 @@
   padding: 20px;
   margin: 10px;
 }
-.resultImg{
-  width:200px;
-  margin:10px;
+.resultImg {
+  width: 100%;
+  max-width: 250px;
+  margin: 10px;
 }
-.restaurant-card{
+.restaurant-card {
   max-width: 300px;
+}
+
+.restaurant-card a,
+.activity-card a {
+  color: #e9546b;
+}
+
+.restaurant-card a:hover,
+.activity-card a:hover {
+  color: #e9546b;
+  text-decoration: underline;
+}
+
+.Restaurants h3,
+.Activities h3 {
+  color: #e9546b;
+  font-size: 24px;
+}
+
+.resName {
+  font-size: 30px;
+}
+
+.resAddr {
+  text-align: left;
+  padding: 0 20px;
 }
