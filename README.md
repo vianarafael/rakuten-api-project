@@ -35,9 +35,9 @@ All APIs are being used through the [Rakuten Rapid API Marketplace](https://engl
 
 ## TARA's Engineers
 
-- Travis Ricks: [Github](https://github.com/travisricks) | [Twitter](https://twitter.com/itsTravisRicks)
+- Travis Ricks: [Github](https://github.com/travisricks) | [Website](http://travisricks.com/) | [LinkedIn](https://www.linkedin.com/in/travis-ricks/)
 - Asami Kamiya: [Github](https://github.com/asamikamiya)
-- Rafael Viana: [Github](https://github.com/vianarafael) | [Twitter](https://twitter.com/vianarafaelds)
+- Rafael Viana: [Github](https://github.com/vianarafael) | [Website](http://rafaelviana.io/)
 - Ashley Kekona: [Github](https://github.com/akekona8)
 
 ---
