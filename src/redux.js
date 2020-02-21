@@ -127,7 +127,7 @@ const reducer = (state = initialState, action) => {
       return { ...state, restaurants: [...action.restaurants] };
     }
     case "SET_ACTIVITIES": {
-      return { ...state, activities: action.activities };
+      return { ...state, activities: [...action.activities] };
     }
     case "SELECT_RESTAURANT": {
       return { ...state, selectedRestaurant: action.index };
