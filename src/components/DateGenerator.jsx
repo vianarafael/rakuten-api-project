@@ -128,11 +128,11 @@ function DateGenerator() {
               tempRestaurants.push(restaurant);
             });
           })
-          .then(async() => {
+          .then(async () => {
             console.log("temP", tempRestaurants);
             // updateRestaurants(tempRestaurants);
             dispatch(await setRestaurants(tempRestaurants));
-            dispatch(await changeLoading(true))
+            dispatch(await changeLoading(true));
           })
           .catch(err => {
             console.log(err, " restaurants");
@@ -252,8 +252,9 @@ function DateGenerator() {
       <h1 className="DateGenTitle">Plan your perfect day</h1>
       <div className="inputContainer">
         <span>
-          Date:
+          <span>Date: </span>
           <DatePicker
+            className="date"
             selected={rDate}
             onChange={date => changeDate(date)}
             maxDate={addDays(new Date(), 5)}
@@ -291,11 +292,14 @@ function DateGenerator() {
             <input className="activity" type="checkbox" ref={showAct} />
           </span>
         </form>
-        <button className="submit inputField" onClick={onSubmit}>
+        <button className="submit-button inputField" onClick={onSubmit}>
           Generate
         </button>
-        {!isLoading && (showRestaurants || showActivities) ? 
-        <div class="loader">Loading...</div> : ""}
+        {!isLoading && (showRestaurants || showActivities) ? (
+          <div class="loader">Loading...</div>
+        ) : (
+          ""
+        )}
         {isLoading && showRestaurants && <Restaurants />}
         {isLoading && showActivities && <Activities />}
       </div>

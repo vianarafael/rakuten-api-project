@@ -15,13 +15,13 @@ function Activities() {
   const rActivity = useSelector(state => state.activities);
 
   //Activity info
-  console.log(rActivity)
+  console.log(rActivity);
   const res = rActivity[selectedActivity];
   const name = res.name;
   const address = res.address; //address_obj for object-form
-  let imgSrc
-  if(!res.hasOwnProperty('photo')){
-    imgSrc = "noimage.svg"
+  let imgSrc;
+  if (!res.hasOwnProperty("photo")) {
+    imgSrc = "noimage.svg";
   } else {
     imgSrc = res.photo.images.medium.url;
   }
@@ -34,12 +34,12 @@ function Activities() {
     // console.log("locationId", locationId);
     // const id = await getId();
     //   await console.log(id);
-      if (selectedActivity < rActivity.length - 1) {
-        let nextActivity = selectedActivity + 1;
-        dispatch(setSelectedActivity(nextActivity));
-      } else {
-       dispatch(setSelectedActivity(0));
-      }
+    if (selectedActivity < rActivity.length - 1) {
+      let nextActivity = selectedActivity + 1;
+      dispatch(setSelectedActivity(nextActivity));
+    } else {
+      dispatch(setSelectedActivity(0));
+    }
     console.log("next activity", selectedActivity);
   }
 
@@ -47,8 +47,8 @@ function Activities() {
     <div className="Activities">
       <h3>ACTIVITY:</h3>
       <div className="activity-card">
-      <div>{name}</div>
-        <img src={imgSrc} alt="activity"  className="resultImg" />
+        <div>{name}</div>
+        <img src={imgSrc} alt="activity" className="resultImg" />
         <div>{address}</div>
         <a href={webUrl}>WEB SITE</a>
       </div>
