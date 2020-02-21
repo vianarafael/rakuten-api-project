@@ -46,7 +46,7 @@ function App() {
       {/* <h1 onClick={() => clickFunction("top")}>Team RATA dating App</h1> */}
       <div className="App">{body}</div>
       <div className="footer">
-        <p>Made with <img src={icon3} alt="icon3" className="heart"></img> by Travis, Asami, Rafael, Ashley</p>
+        <p>Made with <img src={icon3} alt="icon3" className="heart"></img> by <span className="firstLetter">T</span>ravis, <span className="firstLetter">A</span>sami, <span className="firstLetter">R</span>afael, <span className="firstLetter">A</span>shley</p>
       </div>
     </React.Fragment>
   );

@@ -45,7 +45,7 @@ function Restaurants() {
         <div className="resAddr">{address}</div>
         <a href={webUrl}>WEBSITE</a>
       </div>
-      <button onClick={changeRestaurant}>Change Restaurant</button>
+      <button onClick={changeRestaurant} className="submit-button">Change Restaurant</button>
     </div>
   );
 }

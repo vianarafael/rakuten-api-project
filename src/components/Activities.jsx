@@ -58,7 +58,7 @@ function Activities() {
         <div className="resAddr">{address}</div>
         <a href={webUrl}>WEBSITE</a>
       </div>
-      <button onClick={changeActivity}>Change Activity</button>
+      <button onClick={changeActivity} className="submit-button">Change Activity</button>
     </div>
   );
 }

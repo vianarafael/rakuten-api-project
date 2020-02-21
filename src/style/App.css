@@ -214,9 +214,16 @@ h1 {
   height: 50px;
 }
 
-.heart{
+.heart {
   width: 18px;
   height: 18px;
   margin-top: 0;
   margin: 10px 4px 15px;
+}
+
+.firstLetter {
+  text-decoration: underline;
+  /* text-shadow: 0 1px 1px #e9546b; */
+  margin-right: 1px;
+  font-style: 16px;
 }
