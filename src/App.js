@@ -6,6 +6,7 @@ import Support from "./components/Support";
 import DateGenerator from "./components/DateGenerator";
 import icon1 from "./images/icon1.png";
 import icon2 from "./images/icon2.png";
+import icon3 from "./images/icon3.png";
 
 function App() {
   const view = useSelector(state => state.view);
@@ -45,7 +46,7 @@ function App() {
       {/* <h1 onClick={() => clickFunction("top")}>Team RATA dating App</h1> */}
       <div className="App">{body}</div>
       <div className="footer">
-        <p>Made with ❤️ by Travis, Asami, Rafael, Ashley</p>
+        <p>Made with <img src={icon3} alt="icon3" className="heart"></img> by Travis, Asami, Rafael, Ashley</p>
       </div>
     </React.Fragment>
   );
