@@ -13,6 +13,9 @@ function Activities() {
   const dispatch = useDispatch();
   const selectedActivity = useSelector(state => state.selectedActivity);
   const rActivity = useSelector(state => state.activities);
+  const rWeather = useSelector(state => state.weather); // true = sunny, false = rain;
+  const actCity = useSelector(state => state.location.city);
+ 
 
   //Activity info
   console.log(rActivity);
@@ -46,11 +49,14 @@ function Activities() {
   return (
     <div className="Activities">
       <h3>ACTIVITY:</h3>
+      {rWeather ? 
+      <div>The forecast is predicting <span className="emphasisColor">sunny skies in {actCity}</span>, so I recommend an outdoor activity.</div> 
+      : <div>The forecast is predicting <span className="emphasisColor">rain in {actCity}</span>, so I recommend an indoor activity.</div> }
       <div className="activity-card">
-        <div>{name}</div>
+        <div className="resName">{name}</div>
         <img src={imgSrc} alt="activity" className="resultImg" />
-        <div>{address}</div>
-        <a href={webUrl}>WEB SITE</a>
+        <div className="resAddr">{address}</div>
+        <a href={webUrl}>WEBSITE</a>
       </div>
       <button onClick={changeActivity}>Change Activity</button>
     </div>

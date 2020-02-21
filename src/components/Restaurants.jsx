@@ -40,10 +40,10 @@ function Restaurants() {
     <div className="Restaurants">
       <h3>RESTAURANT:</h3>
       <div className="restaurant-card">
-        <div>{name}</div>
+        <div className="resName">{name}</div>
         <img src={imgSrc} alt="restaurant"  className="resultImg" />
-        <div>{address}</div>
-        <a href={webUrl}>WEB SITE</a>
+        <div className="resAddr">{address}</div>
+        <a href={webUrl}>WEBSITE</a>
       </div>
       <button onClick={changeRestaurant}>Change Restaurant</button>
     </div>

@@ -19,6 +19,7 @@ body {
   height: 150px;
   width: 100%;
   background-color: rgb(255, 88, 100);
+  z-index: 99999;
 }
 
 .mainNav a {
